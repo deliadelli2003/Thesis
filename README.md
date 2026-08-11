@@ -12,9 +12,6 @@ Notes on the theoretical background used in the thesis.
 ### Simulations
 OpenFOAM/SOWFA case configurations and simulation setup.
 
-### Scripts
-Pre-processing and post-processing scripts.
-
 ### Results
 Selected plots, tables and processed simulation results.
 
