@@ -1,583 +1,1417 @@
-13.3 Flows with Variable Fluid Properties
+Yes — the issue is that GitHub collapses single line breaks inside normal Markdown paragraphs. To make it stay **schematic and readable**, I’ll use real Markdown headings, blank lines, bold labels, horizontal separators, and `<br>` only where we need forced line breaks.
 
-Fluid properties
-Main properties of a fluid:
+Copy the text below **directly into your `.md` or `README.md` file**. Do not put ``` before or after it.
+
+# Computational Methods for Fluid Dynamics – Special Topics
+
+Notes from *Computational Methods for Fluid Dynamics* by Ferziger, Perić and Street.
+
+---
+
+# 13.3 Flows with Variable Fluid Properties
+
+## Fluid properties
+
+**Main fluid properties**
+
 ρ = density
 μ = dynamic viscosity
 ν = kinematic viscosity = μ / ρ
 k = thermal conductivity
 cp = specific heat capacity
-In a constant-property model:
+
+<br>
+
+**Constant-property flow**
+
 ρ, μ, k, cp = constant
-In a variable-property model:
+
+<br>
+
+**Variable-property flow**
+
+Fluid properties depend on other variables.
+
 ρ = function of temperature and pressure
+
 μ = function of temperature
+
 k = function of temperature
-Main relation:
-temperature change → fluid-property change → modification of the flow
+
+<br>
+
+Main idea:
+
+**temperature / pressure change → fluid-property change → change in the flow**
+
 For air:
-temperature ↑ → density ↓
-temperature ↓ → density ↑
-Coupling between fluid properties and flow
+
+**temperature ↑ → density ↓**
+
+**temperature ↓ → density ↑**
+
+---
+
+## Coupling between properties and flow
+
 Temperature can modify density:
-T → ρ
-Density can modify fluid motion:
-ρ → velocity field
+
+**T → ρ**
+
+Density influences the velocity field:
+
+**ρ → fluid motion**
+
 The velocity field transports temperature:
-velocity field → T
+
+**fluid motion → T**
+
 Therefore:
-T ↔ ρ ↔ fluid motion
-The variables depend on each other and have to be updated during the numerical solution.
+
+**T ↔ ρ ↔ fluid motion**
+
+The variables cannot always be calculated independently.
+
+<br>
+
 Typical numerical sequence:
-temperature → fluid properties → velocity and pressure → new temperature → new fluid properties → repeat
-The process continues until the solution stops changing significantly.
-Outer iterations
-Variable properties introduce an additional level of iteration.
-At each outer iteration:
-current fluid properties → solve governing equations → calculate new properties → solve again
-Outer iterations can also be required because of nonlinear convection terms and turbulence-model quantities.
+
+**temperature → properties → velocity and pressure → new temperature → updated properties → repeat**
+
+The cycle is repeated until the solution changes only negligibly.
+
+---
+
+## Outer iterations
+
+When fluid properties depend on the solution, they must be updated during the calculation.
+
+One outer iteration:
+
+**current properties → solve equations → update properties → solve again**
+
+Outer iterations can also be necessary because of nonlinear convection terms and turbulence-model variables.
+
+<br>
+
 Main purpose:
-outer iterations → update coupled quantities → reach convergence
-Under-relaxation
-Large changes between two iterations can make the solution unstable.
-Under-relaxation limits the amount by which a variable can change at each iteration.
-Small relaxation factor:
-smaller change per iteration → more stable calculation → slower convergence
-Large relaxation factor:
-larger change per iteration → faster convergence → possible instability
-Under-relaxation is particularly useful for strongly coupled or numerically stiff problems.
-Steady and transient calculations
-Steady flow
-No physical change with time is considered.
-The iterations continue until:
-new solution ≈ previous solution
-The final objective is convergence to one steady state.
-Transient flow
-The solution changes with physical time:
-time n → time n+1 → time n+2
-The solution from the previous time step is used as an initial approximation for the next time step.
+
+**outer iterations → update coupled variables → convergence**
+
+---
+
+## Under-relaxation
+
+Strong coupling can produce large changes between consecutive iterations.
+
+Under-relaxation reduces these changes.
+
+<br>
+
+**Small relaxation factor**
+
+smaller change per iteration
+→ higher numerical stability
+→ more iterations
+
+<br>
+
+**Large relaxation factor**
+
+larger change per iteration
+→ faster convergence
+→ greater risk of instability
+
+<br>
+
+Useful for:
+
+**strongly coupled / numerically stiff problems**
+
+---
+
+## Steady and transient calculations
+
+### Steady flow
+
+No physical time evolution.
+
+The numerical solution is iterated until:
+
+**new solution ≈ previous solution**
+
+Goal:
+
+**converged steady state**
+
+---
+
+### Transient flow
+
+The solution changes with physical time.
+
+**time n → time n+1 → time n+2**
+
+The solution from the previous time step provides the starting point for the next one.
+
 Outer iterations can still be performed inside each time step.
-Density variation and buoyancy
-Density differences become important when gravity is present.
-density difference + gravity → buoyancy
+
+---
+
+## Density variation and buoyancy
+
+Density differences become important in the presence of gravity.
+
+**density difference + gravity → buoyancy**
+
+<br>
+
 Warm air:
-temperature ↑ → density ↓ → air tends to rise
+
+**temperature ↑ → density ↓ → air rises**
+
 Cold air:
-temperature ↓ → density ↑ → air tends to sink
-Therefore:
-temperature → density → buoyancy → vertical motion
-This mechanism is important in atmospheric flows.
-Boussinesq approximation
-Used when density variations are relatively small.
+
+**temperature ↓ → density ↑ → air sinks**
+
+<br>
+
+Main atmospheric relation:
+
+**temperature → density → buoyancy → vertical motion**
+
+---
+
+## Boussinesq approximation
+
+Used when density variations are small compared with the reference density.
+
 Main assumption:
-density ≈ constant
-but density variations are still considered in the buoyancy term.
+
+**density ≈ constant**
+
+Density variations are neglected in most equations but retained where they produce buoyancy.
+
+<br>
+
 Therefore:
-small density variation + gravity → important vertical motion
-The approximation avoids treating the complete flow as strongly compressible while still accounting for thermal buoyancy.
-Connection with atmospheric CFD:
-temperature variation → small density variation → buoyancy → modification of turbulence
-13.5 Free-Surface Flows
-Free surface
-A free surface is an interface separating two fluids.
+
+**small density variation + gravity → significant buoyancy**
+
+<br>
+
+Atmospheric connection:
+
+**temperature variation → density variation → buoyancy → turbulence modification**
+
+---
+
+# 13.5 Free-Surface Flows
+
+## Free surface
+
+A free surface is the interface between two fluids.
+
 Typical example:
-air
-──────── free surface
-water
-Other examples: ocean waves, open channels, water around ships and liquid inside tanks.
+
+**air**
+
+──────────── free surface ────────────
+
+**water**
+
+<br>
+
+Other examples:
+
+ocean waves
+open-channel flows
+water around ships
+liquid inside tanks
+
+<br>
+
 Main difficulty:
-interface position changes with time
+
+**interface position changes with time**
+
 Therefore CFD must calculate:
-fluid motion + movement of the interface
-The interface is part of the solution and is not known beforehand.
-Conditions at the free surface
-Kinematic condition
+
+**fluid motion + interface motion**
+
+---
+
+## Conditions at the free surface
+
+### Kinematic condition
+
 The interface moves with the fluid.
-fluid velocity → interface velocity
-The liquid surface cannot move independently from the fluid particles forming it.
-Dynamic condition
-The forces acting across the interface must be balanced.
-Main contributions:
-pressure + viscous stresses + surface tension
-13.5.1 Interface-Capturing Methods
-General concept
+
+**fluid velocity → interface movement**
+
+The free surface cannot move independently from the fluid forming it.
+
+---
+
+### Dynamic condition
+
+Forces acting across the interface must balance.
+
+Main effects:
+
+**pressure + viscous stresses + surface tension**
+
+---
+
+# 13.5.1 Interface-Capturing Methods
+
+## General concept
+
 The computational mesh remains fixed.
-fixed mesh + moving interface
-The mesh does not follow the surface.
-Instead, an additional variable is used to determine which fluid occupies each computational cell.
+
+**fixed mesh + moving interface**
+
+The interface is not represented directly by mesh points.
+
+Instead, another variable identifies which fluid occupies each computational cell.
+
+<br>
+
 Main example:
-VOF = Volume of Fluid method
-Volume of Fluid method — VOF
-VOF describes the distribution of the different fluids using a volume fraction, usually called α.
+
+**VOF = Volume of Fluid**
+
+---
+
+## Volume of Fluid — VOF
+
+VOF uses a volume fraction, usually called **α**.
+
 For an air-water system:
-α = 1 → cell completely filled with water
-α = 0 → cell completely filled with air
-0 < α < 1 → the free surface crosses the cell
+
+**α = 1 → cell completely filled with water**
+
+**α = 0 → cell completely filled with air**
+
+**0 < α < 1 → interface crosses the cell**
+
+<br>
+
 Example:
-air → α = 0
-air → α = 0
-interface → α = 0.3
-interface → α = 0.8
-water → α = 1
-water → α = 1
-The interface is identified from the transition of α between 0 and 1.
-Movement of the interface in VOF
+
+α = 0 → air
+
+α = 0 → air
+
+α = 0.3 → interface
+
+α = 0.8 → interface
+
+α = 1 → water
+
+α = 1 → water
+
+<br>
+
+The interface is identified from the transition:
+
+**α = 0 → α = 1**
+
+---
+
+## Movement of the interface in VOF
+
 The volume fraction is transported by the fluid velocity.
-fluid velocity → transport of α → movement of interface
-If water moves into another computational cell, the value of α in that region changes.
-VOF therefore does not explicitly move the mesh.
+
+**fluid velocity → transport of α → movement of interface**
+
+The mesh does not move.
+
 Instead:
-fixed mesh + changing α field → moving free surface
-Fluid properties in VOF
-The local fluid properties depend on the volume fraction.
-Example for density:
-α = 1 → water density
-α = 0 → air density
-0 < α < 1 → intermediate value inside an interface cell
+
+**fixed mesh + changing α field → moving free surface**
+
+---
+
+## Fluid properties in VOF
+
+The local properties depend on the phase fraction.
+
+For density:
+
+**α = 1 → water density**
+
+**α = 0 → air density**
+
+**0 < α < 1 → mixture/interfacial cell**
+
 Therefore:
-α → local density and viscosity → momentum equation
-This allows the same computational domain to contain two different fluids.
-Interface smearing
-A real air-water interface is very sharp.
-Ideal representation:
-0 | 1
-A numerical solution can instead produce:
-0 → 0.2 → 0.4 → 0.7 → 0.9 → 1
-The interface becomes spread over several cells.
-This effect is called numerical diffusion or interface smearing.
-Main numerical objective:
-transport the interface correctly + keep the interface sharp
-VOF methods therefore require numerical schemes that limit artificial diffusion.
-Advantages of interface capturing
-The mesh remains fixed even when the interface changes shape considerably.
-Suitable for:
-waves → breaking waves → droplets → merging → splitting
+
+**α → local density and viscosity → momentum equation**
+
+This allows different fluids to occupy the same computational domain.
+
+---
+
+## Interface smearing
+
+A physical air-water interface is sharp.
+
+Ideal transition:
+
+**0 | 1**
+
+Numerical transition can become:
+
+**0 → 0.2 → 0.4 → 0.7 → 0.9 → 1**
+
+The interface is spread across several cells.
+
+This is called:
+
+**numerical diffusion / interface smearing**
+
+<br>
+
+Main objective:
+
+**transport interface correctly + keep interface sharp**
+
+---
+
+## Advantages of interface capturing
+
+The mesh does not need to follow the surface.
+
+Therefore it can handle:
+
+**waves → breaking waves → droplets → merging → splitting**
+
 Main advantage:
-large interface deformation does not require large mesh deformation
-13.5.2 Interface-Tracking Methods
-General concept
-The position of the interface is represented explicitly.
-interface movement → mesh movement
-The computational points on the surface follow the interface.
-A free surface can, for example, be represented through its height:
-surface height = function of position and time
+
+**large interface deformation without large mesh deformation**
+
+---
+
+# 13.5.2 Interface-Tracking Methods
+
+## General concept
+
+The interface is represented explicitly.
+
+The mesh follows the surface.
+
+**interface movement → mesh movement**
+
+<br>
+
 Main advantage:
-interface position known very accurately
-Main limitation
-When the surface changes significantly:
-interface deformation → mesh deformation
-Large deformation can produce:
-poor mesh quality → numerical problems
-Particularly difficult for:
+
+**very accurate interface position**
+
+---
+
+## Main limitation
+
+Large surface deformation causes large mesh deformation.
+
+**interface deformation → mesh deformation → possible poor mesh quality**
+
+Difficult cases:
+
 breaking waves
 droplets
 splitting interfaces
 merging interfaces
-Therefore, interface tracking is effective for relatively smooth surfaces but becomes difficult when the topology changes.
-Interface capturing vs interface tracking
-Interface capturing
-fixed mesh
-interface found using another variable
-good for strong deformation
-example: VOF
-Interface tracking
-moving/deforming mesh
-interface represented directly
-very accurate surface location
-difficult for strong deformation
-13.5.3 Hybrid Methods
-Hybrid methods combine interface capturing and interface tracking.
+
+<br>
+
+Best suited to:
+
+**relatively smooth interfaces**
+
+---
+
+## Interface capturing vs interface tracking
+
+### Interface capturing
+
+**Mesh:** fixed
+
+**Interface:** calculated indirectly
+
+**Advantage:** large deformation easier to handle
+
+**Example:** VOF
+
+---
+
+### Interface tracking
+
+**Mesh:** moves or deforms
+
+**Interface:** explicitly represented
+
+**Advantage:** very accurate surface position
+
+**Problem:** difficult with large deformation or topology changes
+
+---
+
+# 13.5.3 Hybrid Methods
+
+Hybrid methods combine:
+
+**interface capturing + interface tracking**
+
 Main objective:
-robustness of fixed-mesh methods + accurate interface position
-One possibility is to use a fixed computational mesh together with markers that follow the interface.
-fluid velocity → marker movement → interface position
-The markers improve the description of the interface without requiring the entire computational mesh to move with it.
-VOF-PLIC
-PLIC = Piecewise Linear Interface Construction.
-VOF provides the volume fraction α.
-PLIC uses α to reconstruct the actual geometry of the interface inside each interface cell.
-In two dimensions:
-interface ≈ straight line inside the cell
-In three dimensions:
-interface ≈ plane inside the cell
-Main process:
-volume fraction → estimate interface orientation → reconstruct interface
-Compared with a basic VOF method:
-better interface geometry → reduced smearing → more accurate surface position
-Froude number
-The Froude number is important in free-surface flows because it compares inertial effects with gravitational effects.
-Conceptually:
-Froude number = flow velocity / gravity-wave velocity
-Three conditions:
-Fr < 1 → subcritical flow
-Fr = 1 → critical flow
-Fr > 1 → supercritical flow
-Subcritical
-Gravity waves can travel faster than the mean flow.
-Information can propagate upstream.
-Supercritical
-Flow moves faster than the gravity-wave propagation speed.
-Information cannot propagate upstream.
-13.7 Meteorological and Oceanographic Applications
-Characteristic scales
-Meteorological and oceanographic flows can cover very large distances.
+
+**robustness of fixed-mesh methods + accurate interface location**
+
+<br>
+
+One possible approach:
+
+fixed mesh + markers located on interface
+
+Then:
+
+**fluid velocity → marker movement → interface position**
+
+---
+
+## VOF-PLIC
+
+PLIC = **Piecewise Linear Interface Construction**
+
+VOF gives the phase fraction α.
+
+PLIC uses α to reconstruct the actual interface geometry inside each cell.
+
+<br>
+
+In 2D:
+
+**interface ≈ line segment**
+
+In 3D:
+
+**interface ≈ plane**
+
+<br>
+
+Process:
+
+**volume fraction → interface orientation → geometric reconstruction**
+
+Result:
+
+**less smearing + better interface shape**
+
+---
+
+## Froude number
+
+The Froude number compares:
+
+**inertial effects ↔ gravitational effects**
+
+It is particularly important in free-surface flows.
+
+---
+
+### Subcritical flow
+
+**Fr < 1**
+
+Gravity waves travel faster than the mean flow.
+
+Disturbances can propagate upstream.
+
+---
+
+### Critical flow
+
+**Fr = 1**
+
+Flow velocity and gravity-wave velocity are comparable.
+
+---
+
+### Supercritical flow
+
+**Fr > 1**
+
+Flow moves faster than gravity waves.
+
+Disturbances cannot propagate upstream.
+
+---
+
+# 13.7 Meteorological and Oceanographic Applications
+
+## Characteristic scales
+
+Atmospheric and oceanographic flows can have enormous horizontal dimensions.
+
 Typical relation:
-horizontal length scale >> vertical length scale
-Example:
+
+**horizontal length scale >> vertical length scale**
+
+For example:
+
 horizontal scale → hundreds or thousands of kilometres
+
 vertical scale → kilometres or less
-Therefore these flows have a very large aspect ratio.
-The dominant physical mechanisms depend strongly on the scale of the problem.
-Reynolds number
-Reynolds number compares inertial and viscous effects.
+
+<br>
+
+Therefore:
+
+**large aspect ratio**
+
+Different scales also mean different dominant physical effects.
+
+---
+
+## Reynolds number
+
+Reynolds number compares:
+
+**inertial effects ↔ viscous effects**
+
 Atmospheric flows have very large characteristic lengths.
+
 Therefore:
-large length scale → very high Reynolds number → turbulence
-Atmospheric and oceanographic flows are normally strongly turbulent.
+
+**large length scale → very high Reynolds number → strongly turbulent flow**
+
 At large scales:
-inertial effects dominate
+
+**inertial effects dominate**
+
 At the smallest turbulent scales:
-viscosity becomes important and dissipates energy
-Different scales, different physics
-Not every physical term has the same importance for every atmospheric problem.
-Very large-scale flows:
-Earth rotation important
-Smaller atmospheric flows:
-three-dimensional turbulence important
-Thermally stratified flows:
-buoyancy important
-Near the ground:
-surface friction important
+
+**viscosity dissipates energy**
+
+---
+
+## Different scales → different physics
+
+Not all physical mechanisms are equally important at every scale.
+
+<br>
+
+**Very large atmospheric scales**
+
+Earth rotation becomes important.
+
+<br>
+
+**Smaller atmospheric scales**
+
+Three-dimensional turbulence becomes important.
+
+<br>
+
+**Thermally stratified flows**
+
+Buoyancy becomes important.
+
+<br>
+
+**Near the Earth's surface**
+
+Surface friction becomes important.
+
+<br>
+
 Therefore:
-physical scale → dominant processes → appropriate numerical model
-Coriolis effect
+
+**physical scale → dominant physics → numerical model**
+
+---
+
+## Coriolis effect
+
 The Earth rotates.
-When atmospheric motion is described in a reference frame rotating with the Earth, an apparent Coriolis acceleration appears.
-Earth rotation + moving air → Coriolis deflection
+
+In a reference frame rotating with the Earth, moving air experiences an apparent Coriolis acceleration.
+
+Main relation:
+
+**Earth rotation + moving air → Coriolis deflection**
+
+<br>
+
 Northern Hemisphere:
-moving air → deflection toward the right
+
+**motion deflected toward the right**
+
 Southern Hemisphere:
-moving air → deflection toward the left
+
+**motion deflected toward the left**
+
+<br>
+
 Importance:
-large spatial and temporal scales → Coriolis important
-small spatial and temporal scales → Coriolis often negligible
-Stratification
-Stratification means that density changes systematically with height.
+
+**large scale / long time → Coriolis important**
+
+**small scale / short time → Coriolis often negligible**
+
+---
+
+## Stratification
+
+Stratification means that density varies systematically with height.
+
+**ρ = function of height**
+
+<br>
+
 Atmosphere:
-density variation mainly connected with temperature and pressure
+
+density affected mainly by temperature and pressure.
+
 Ocean:
-density variation connected with temperature and salinity
-Stable vertical density structure:
-vertical displacement opposed → vertical mixing reduced
-Stratification therefore influences turbulence and vertical transport.
-Hydrostatic approximation
-Atmospheric pressure changes with height because of gravity.
-For large-scale flows with relatively small vertical acceleration:
-vertical pressure-gradient force ≈ gravity
-This condition is called hydrostatic balance.
-Concept:
-pressure decreases with height because less fluid is located above the point.
-Hydrostatic approximation:
-vertical acceleration neglected → pressure and gravity approximately balanced
-Useful for many large-scale atmospheric and oceanographic simulations.
-Nonhydrostatic models
-The hydrostatic approximation becomes less appropriate when vertical motion is important.
+
+density affected mainly by temperature and salinity.
+
+<br>
+
+Stable stratification:
+
+**vertical displacement opposed → vertical mixing reduced**
+
+Therefore stratification influences:
+
+**vertical motion + turbulence + transport**
+
+---
+
+## Hydrostatic approximation
+
+Atmospheric pressure decreases with height because of gravity.
+
+For large-scale flows with small vertical acceleration:
+
+**vertical pressure gradient ≈ gravity**
+
+This is hydrostatic balance.
+
+<br>
+
+Main assumption:
+
+**vertical acceleration ≈ negligible**
+
+Therefore:
+
+**pressure force ↔ gravitational force**
+
+Useful for many large-scale atmospheric and oceanographic models.
+
+---
+
+## Nonhydrostatic models
+
+The hydrostatic approximation becomes less appropriate when vertical acceleration is important.
+
 Examples:
+
 convection
 strong turbulence
 cloud dynamics
-small-scale atmospheric structures
-high-resolution ABL simulations
-In these situations:
-vertical acceleration cannot be neglected
+high-resolution atmospheric flows
+atmospheric boundary-layer turbulence
+
+<br>
+
 Therefore:
-high-resolution three-dimensional flow → nonhydrostatic model
-Atmospheric Boundary Layer — ABL
-The Atmospheric Boundary Layer is the lowest region of the atmosphere directly influenced by the Earth's surface.
+
+**important vertical motion → nonhydrostatic model**
+
+---
+
+# Atmospheric Boundary Layer — ABL
+
+The ABL is the lowest region of the atmosphere directly affected by the Earth's surface.
+
 Main surface effects:
-friction
-surface roughness
-heating
-cooling
-Near the ground:
-wind speed low
-Increasing height:
-wind speed increases
+
+**friction + surface roughness + heating + cooling**
+
+<br>
+
+Close to the ground:
+
+**wind speed lower**
+
+At larger heights:
+
+**wind speed increases**
+
 Therefore:
-surface friction → vertical velocity gradient → wind shear
+
+**surface friction → vertical velocity gradient → wind shear**
+
 Wind shear generates turbulence.
-Main mechanical turbulence mechanism:
-surface friction → wind shear → turbulence production
-Atmospheric stability
-Three main atmospheric stability states:
-stable
-neutral
-unstable
-Stability describes the effect of buoyancy on vertical motion and turbulence.
-Neutral condition
+
+Main mechanical mechanism:
+
+**surface roughness → friction → wind shear → turbulence**
+
+---
+
+## Atmospheric stability
+
+Three main conditions:
+
+**stable | neutral | unstable**
+
+Atmospheric stability describes the effect of buoyancy on vertical motion and turbulence.
+
+---
+
+### Neutral condition
+
 Buoyancy has little influence.
-Main source of turbulence:
-wind shear
+
+Main turbulence source:
+
+**wind shear**
+
 Therefore:
-neutral atmosphere → mechanically generated turbulence
-Temperature effects are relatively unimportant for turbulence production.
-Unstable condition
-Surface warmer than air above.
-warm surface → warm nearby air → density decreases → air rises
-At the same time, colder and denser air can move downward.
-Result:
-buoyancy ↑ → vertical mixing ↑ → turbulence ↑
-Typical condition:
-daytime surface heating
-Unstable atmosphere = buoyancy enhances turbulence.
-Stable condition
-Surface colder than air above.
-cold surface → cold dense air near ground
-Vertical displacement is opposed.
-Result:
-vertical mixing ↓ → turbulence ↓
-Typical condition:
-nighttime surface cooling
-Stable atmosphere = buoyancy suppresses turbulence.
-Potential temperature
-Atmospheric pressure decreases with height.
-When an air parcel rises:
-pressure decreases → air expands → temperature decreases
-This cooling can happen even without heat exchange.
-Potential temperature removes this pressure-related effect.
-Potential temperature = temperature that the air parcel would have if moved to a reference pressure without heat exchange.
-Symbol:
-θ = potential temperature
-Approximate stability relation:
-potential temperature increasing with height → stable
-potential temperature approximately constant with height → neutral
-potential temperature decreasing with height → unstable
-Potential temperature is therefore more useful than ordinary temperature for analysing atmospheric stability.
-Turbulence and energy cascade
-Turbulence contains structures of different sizes called eddies.
-Energy transfer:
-large eddies → medium eddies → small eddies → viscous dissipation
-This process is the energy cascade.
-Large eddies contain much of the energy and depend strongly on the flow geometry.
-Small eddies are more universal and are eventually dissipated by viscosity.
-RANS
-RANS = Reynolds-Averaged Navier-Stokes.
-The instantaneous turbulent fluctuations are not resolved directly.
-Instead:
-flow = mean flow + modelled turbulence effects
-Main advantage:
-lower computational cost
-Main limitation:
-detailed instantaneous turbulent structures are not directly calculated
-Useful when the objective is mainly the mean flow or when very high spatial resolution is impossible.
-LES
-LES = Large Eddy Simulation.
+
+**neutral ABL → mechanically generated turbulence**
+
+Thermal effects are relatively weak.
+
+---
+
+### Unstable condition
+
+Surface warmer than the air above:
+
+**warm surface → warm air → lower density → rising air**
+
+Therefore:
+
+**buoyancy ↑ → vertical mixing ↑ → turbulence ↑**
+
+Typical situation:
+
+**daytime / surface heating**
+
 Main idea:
-large turbulent structures → resolved directly
-small turbulent structures → modelled
-The unresolved small scales are represented by a subgrid-scale model.
-LES is particularly useful for atmospheric boundary-layer simulations because large turbulent eddies strongly influence:
+
+**unstable atmosphere = buoyancy produces turbulence**
+
+---
+
+### Stable condition
+
+Surface colder than the air above:
+
+**cold surface → cold dense air close to ground**
+
+Vertical displacement is suppressed.
+
+Therefore:
+
+**vertical mixing ↓ → turbulence ↓**
+
+Typical situation:
+
+**nighttime / surface cooling**
+
+Main idea:
+
+**stable atmosphere = buoyancy suppresses turbulence**
+
+---
+
+## Potential temperature
+
+Atmospheric pressure decreases with height.
+
+When an air parcel rises:
+
+**pressure ↓ → expansion → temperature ↓**
+
+This cooling can occur even without heat exchange.
+
+<br>
+
+Potential temperature removes this pressure-related effect.
+
+**θ = potential temperature**
+
+Meaning:
+
+temperature that an air parcel would have if it were moved to a reference pressure without exchanging heat.
+
+<br>
+
+Approximate stability relation:
+
+**θ increases with height → stable**
+
+**θ approximately constant with height → neutral**
+
+**θ decreases with height → unstable**
+
+---
+
+## Turbulence and energy cascade
+
+Turbulence consists of structures of different sizes called eddies.
+
+Energy transfer:
+
+**large eddies → medium eddies → small eddies → viscous dissipation**
+
+This is the **energy cascade**.
+
+<br>
+
+Large eddies:
+
+contain much of the turbulent energy and depend strongly on the flow.
+
+Small eddies:
+
+eventually dissipate their energy through viscosity.
+
+---
+
+## RANS
+
+RANS = **Reynolds-Averaged Navier-Stokes**
+
+Turbulent fluctuations are not resolved directly.
+
+Instead:
+
+**mean flow + modelled effect of turbulence**
+
+<br>
+
+Advantages:
+
+lower computational cost
+
+Suitable for:
+
+large domains
+mean-flow prediction
+cases where very high spatial resolution is not possible
+
+<br>
+
+Limitation:
+
+detailed instantaneous turbulent structures are not directly calculated.
+
+---
+
+## LES
+
+LES = **Large Eddy Simulation**
+
+Main principle:
+
+**large turbulent eddies → resolved**
+
+**small turbulent eddies → modelled**
+
+The unresolved scales are represented with a subgrid-scale model.
+
+<br>
+
+Important in ABL simulations because large eddies control much of the:
+
 momentum transport
 heat transport
 vertical mixing
-Compared with RANS:
-LES → more turbulent detail + higher computational cost
-RANS → more modelling + lower computational cost
-Connection between scale and turbulence model
-High-resolution three-dimensional flow:
-LES more suitable
-Large domains or calculations focused on mean quantities:
-RANS can be more suitable
-Therefore:
-grid resolution → resolved turbulent scales → turbulence model
-Geostrophic wind
-At larger heights, surface friction becomes weaker.
-For sufficiently large atmospheric scales, the pressure-gradient force and Coriolis force can approximately balance.
-pressure-gradient force ≈ Coriolis force
-This is geostrophic balance.
-The associated wind is called geostrophic wind.
-Inside the atmospheric boundary layer, surface friction must also be considered.
-Therefore:
-pressure gradient + Coriolis + surface friction + turbulence
+
+<br>
+
+Comparison:
+
+**LES → more turbulent detail + higher computational cost**
+
+**RANS → more turbulence modelling + lower computational cost**
+
+---
+
+## Geostrophic wind
+
+Farther from the surface, the direct effect of friction becomes weaker.
+
+At sufficiently large atmospheric scales:
+
+**pressure-gradient force ≈ Coriolis force**
+
+This condition is:
+
+**geostrophic balance**
+
+The corresponding wind is:
+
+**geostrophic wind**
+
+<br>
+
+Inside the ABL:
+
+**pressure gradient + Coriolis + surface friction + turbulence**
+
 With thermal effects:
-buoyancy
-Main ABL relations
+
+**+ buoyancy**
+
+---
+
+## Main ABL connections
+
 Mechanical turbulence:
-surface roughness → friction → wind shear → turbulence
-Thermal turbulence:
-temperature → density → buoyancy → stability → turbulence
-Large-scale atmospheric forcing:
-Earth rotation → Coriolis effect → wind direction
-Therefore, ABL simulations can involve the interaction of:
-pressure gradient + friction + turbulence + buoyancy + Coriolis
-13.8 Multiphase Flows
-Definition
-A multiphase flow contains two or more physical phases.
-Examples:
-gas + liquid
-liquid + solid
-gas + solid
-Typical situations:
-air + water → free-surface flow
-air + droplets → spray
-water + bubbles → bubbly flow
-air + solid particles → particle-laden gas
-water + solid particles → slurry
-Continuous and dispersed phases
-Many multiphase flows contain one continuous phase and one dispersed phase.
-Continuous phase
-Occupies most of the domain and surrounds the other phase.
-Example:
-air surrounding water droplets
-Dispersed phase
-Exists as separate particles, bubbles or droplets inside the continuous phase.
-Example:
-water droplets inside air
+
+**surface roughness → friction → wind shear → turbulence**
+
+Thermal effects:
+
+**temperature → density → buoyancy → atmospheric stability → turbulence**
+
+Large-scale forcing:
+
+**Earth rotation → Coriolis → wind field**
+
 Therefore:
-continuous carrier fluid + dispersed particles/droplets/bubbles
-Eulerian description
-The fluid is described at fixed positions in space.
-At every computational cell, quantities such as:
+
+**pressure gradient + friction + Coriolis + buoyancy + turbulence → ABL flow**
+
+---
+
+# 13.8 Multiphase Flows
+
+## Definition
+
+A multiphase flow contains two or more physical phases.
+
+Examples:
+
+**gas + liquid**
+
+**liquid + solid**
+
+**gas + solid**
+
+<br>
+
+Typical systems:
+
+air + water → free-surface flow
+
+air + droplets → spray
+
+water + bubbles → bubbly flow
+
+air + solid particles → particle-laden flow
+
+water + solid particles → slurry
+
+---
+
+## Continuous and dispersed phases
+
+Many multiphase flows contain:
+
+**continuous phase + dispersed phase**
+
+---
+
+### Continuous phase
+
+The carrier fluid occupying most of the domain.
+
+Example:
+
+**air surrounding droplets**
+
+---
+
+### Dispersed phase
+
+Particles, droplets or bubbles distributed inside the continuous phase.
+
+Example:
+
+**water droplets in air**
+
+Therefore:
+
+**carrier fluid + particles / bubbles / droplets**
+
+---
+
+## Eulerian description
+
+The flow is observed at fixed positions in space.
+
+The mesh remains fixed.
+
+Each computational cell contains variables such as:
+
 velocity
 pressure
 temperature
 phase fraction
-are calculated.
-This is the standard viewpoint used in most finite-volume CFD calculations.
+
+<br>
+
 Concept:
-fixed computational cells → calculate how fluid properties change inside them
-Lagrangian description
-Individual particles, droplets or bubbles are followed through the domain.
-For every particle:
-position changes with time
-velocity changes according to the forces acting on it
+
+**fixed location → observe fluid passing through**
+
+This is the usual viewpoint in finite-volume CFD.
+
+---
+
+## Lagrangian description
+
+Individual particles, droplets or bubbles are followed as they move.
+
 Concept:
-fluid flow → forces on particle → particle velocity → particle trajectory
-Typical forces can include:
+
+**particle position changes with time**
+
+Forces determine the particle motion.
+
+Main process:
+
+**fluid field → forces on particle → particle velocity → particle trajectory**
+
+Possible forces:
+
 drag
 gravity
 buoyancy
 lift
-Computational particles
-A real multiphase flow can contain an enormous number of particles or droplets.
-Tracking every real particle would be too expensive.
+
+---
+
+## Computational particles
+
+Real flows may contain millions or billions of physical particles.
+
+Tracking every particle separately would be too expensive.
+
 Therefore:
-one computational particle → represents many real particles
-This group is often called a particle parcel or packet.
+
+**1 computational particle → represents many real particles**
+
+This representative group can be called a:
+
+**parcel / packet**
+
 Main advantage:
-much lower computational cost
-One-way coupling
-Used when the dispersed phase has a very small influence on the carrier fluid.
-carrier fluid → particles
+
+**lower computational cost**
+
+---
+
+## One-way coupling
+
+Used when the dispersed phase does not significantly affect the carrier fluid.
+
+**fluid → particles**
+
 but:
-particles → negligible effect on carrier fluid
+
+**particles → negligible effect on fluid**
+
 Procedure:
-solve fluid flow → calculate particle trajectories
-Example:
-very small concentration of lightweight particles.
-Two-way coupling
-Used when the dispersed phase significantly influences the carrier fluid.
-fluid ↔ particles
-The fluid affects particle motion.
-Particles also transfer momentum, mass or energy back to the fluid.
-Therefore:
-fluid → particles
-and
-particles → fluid
-Additional models may be required for:
-particle collisions
-particle breakup
-agglomeration
-particle-wall interaction
-Euler-Lagrange approach
-Continuous phase:
-Eulerian description
-Dispersed phase:
-Lagrangian description
-Therefore:
-fluid solved on mesh + individual particle trajectories calculated
-Suitable when the dispersed phase can be represented by particles, droplets or bubbles that do not occupy too large a fraction of the domain.
-Euler-Euler approach
-Both phases are treated as continuous fields.
-Phase 1 has its own:
-volume fraction
-velocity
-properties
-Phase 2 also has its own:
-volume fraction
-velocity
-properties
-For two phases:
-volume fraction of phase 1 + volume fraction of phase 2 = 1
-The phases interact through exchange terms.
+
+**solve carrier flow → calculate particle trajectories**
+
+---
+
+## Two-way coupling
+
+Used when particles significantly influence the carrier phase.
+
+**fluid ↔ particles**
+
+Fluid affects particle motion.
+
+Particles transfer information back to the fluid.
+
 Possible exchanges:
+
 momentum
 mass
 energy
+
+<br>
+
+Additional processes can include:
+
+particle collisions
+breakup
+agglomeration
+particle-wall interaction
+
+---
+
+## Euler-Lagrange approach
+
+Continuous phase:
+
+**Eulerian**
+
+Dispersed phase:
+
+**Lagrangian**
+
 Therefore:
-more phases → more coupled equations → greater numerical complexity
-Homogeneous multiphase model
-Simpler approximation.
-Both phases are assumed to move with the same velocity.
-velocity of phase 1 = velocity of phase 2
-This is called the no-slip assumption.
-The phases can also share pressure and temperature.
+
+**fluid solved on fixed mesh + individual particle trajectories calculated**
+
+Suitable when the dispersed phase consists of identifiable particles, droplets or bubbles.
+
+---
+
+## Euler-Euler approach
+
+Both phases are treated as continuous fields.
+
+Phase 1 has:
+
+volume fraction
+velocity
+properties
+
+Phase 2 has:
+
+volume fraction
+velocity
+properties
+
+<br>
+
+For two phases:
+
+**volume fraction phase 1 + volume fraction phase 2 = 1**
+
+The phases exchange:
+
+momentum
+mass
+energy
+
 Therefore:
-multiple phases → treated approximately as one mixture with variable properties
-Main advantage:
+
+**more phases → more coupled equations → greater numerical complexity**
+
+---
+
+## Homogeneous multiphase model
+
+Simplified multiphase approach.
+
+The phases are assumed to move with the same velocity.
+
+**velocity phase 1 = velocity phase 2**
+
+This is the **no-slip assumption**.
+
+The phases may also share pressure and temperature.
+
+Therefore:
+
+**multiple phases → treated as one effective mixture**
+
+Advantages:
+
 fewer equations
-Main limitation:
-cannot represent important relative motion between phases.
-Relation between free-surface and multiphase flows
-A free-surface flow is a particular multiphase flow.
+lower computational cost
+
+Limitation:
+
+relative motion between the phases cannot be properly represented.
+
+---
+
+## Relation to free-surface flows
+
+A free-surface flow is one type of multiphase flow.
+
 Example:
-air + water
-When there is a clear large interface:
-VOF / interface tracking → suitable
-When the second phase consists of many small bubbles, droplets or particles:
-Euler-Lagrange or Euler-Euler → often more suitable
-Therefore, the appropriate method depends on the structure of the phases.
-Phase change
-Multiphase flows can also involve transformation from one phase to another.
+
+**air + water**
+
+If there is one large, identifiable interface:
+
+**VOF / interface tracking → appropriate**
+
+If the second phase consists of many small bubbles, droplets or particles:
+
+**Euler-Lagrange / Euler-Euler → more practical**
+
+Therefore:
+
+**phase structure → choice of multiphase method**
+
+---
+
+## Phase change
+
+Multiphase flows can also include transformation between phases.
+
 Examples:
-liquid → vapour = evaporation, boiling or cavitation
-vapour → liquid = condensation
-solid → liquid = melting
-liquid → solid = solidification
+
+**liquid → vapour = evaporation / boiling / cavitation**
+
+**vapour → liquid = condensation**
+
+**solid → liquid = melting**
+
+**liquid → solid = solidification**
+
 Phase change involves transfer of:
-mass + momentum + energy
-between phases.
-Cavitation
-Cavitation occurs when the local pressure of a liquid falls below its saturation vapour pressure.
-pressure ↓ below saturation pressure → liquid vaporizes → vapour bubbles form
-When the pressure increases again:
-pressure ↑ → vapour bubbles collapse
+
+**mass + momentum + energy**
+
+---
+
+## Cavitation
+
+Cavitation occurs when the local liquid pressure becomes lower than the saturation vapour pressure.
+
+Main process:
+
+**pressure ↓ below saturation pressure → liquid vaporizes → vapour bubbles form**
+
+If pressure increases again:
+
+**pressure ↑ → vapour bubbles collapse**
+
 Typical applications:
+
 propellers
 pumps
 turbines
 injectors
-Cavitation can cause:
+
+Possible consequences:
+
 noise
 vibration
-loss of performance
-material damage
-Vapour volume fraction
-Cavitation models can describe the amount of vapour through a vapour volume fraction.
-vapour fraction = 0 → only liquid
-vapour fraction = 1 → only vapour
-values between 0 and 1 → mixture of liquid and vapour
-Unlike a simple VOF interface problem, phase change introduces a source term.
+performance loss
+material erosion
+
+---
+
+## Vapour volume fraction
+
+Cavitation models can describe the amount of vapour using a vapour volume fraction.
+
+**vapour fraction = 0 → only liquid**
+
+**vapour fraction = 1 → only vapour**
+
+**0 < vapour fraction < 1 → liquid-vapour mixture**
+
+Unlike a simple free-surface VOF problem, phase change creates or destroys vapour.
+
 Therefore:
-transport of vapour + generation/destruction of vapour
-If vapour is generated:
-source term > 0
-If vapour collapses:
-source term < 0
-Bubble growth and collapse
-Bubble dynamics depend strongly on the difference between local liquid pressure and saturation vapour pressure.
-local pressure < saturation pressure → bubble grows
-local pressure > saturation pressure → bubble collapses
-The Rayleigh-Plesset equation is commonly used to describe the dynamics of a spherical vapour bubble.
-Main idea:
-pressure difference → change of bubble radius → vapour production or collapse
+
+**transport of vapour + phase-change source term**
+
+<br>
+
+Positive source:
+
+**vapour production**
+
+Negative source:
+
+**vapour collapse / condensation**
+
+---
+
+## Bubble growth and collapse
+
+Bubble behaviour depends strongly on the difference between:
+
+**local liquid pressure ↔ saturation vapour pressure**
+
+If:
+
+**local pressure < saturation pressure → bubble grows**
+
+If:
+
+**local pressure > saturation pressure → bubble collapses**
+
+The **Rayleigh-Plesset equation** can be used to describe the change of bubble radius with time.
+
+Main physical relation:
+
+**pressure difference → bubble-radius change → vapour formation or collapse**
+
+---
+
+# Connection Between the Four Sections
+
+## 13.3 Variable Fluid Properties
+
+**temperature / pressure → density, viscosity, etc. → flow**
+
+---
+
+## 13.5 Free-Surface Flows
+
+**two fluids + moving interface → interface must be calculated**
+
+---
+
+## 13.7 Meteorological and Oceanographic Applications
+
+**large scales + turbulence + stratification + surface effects + Earth rotation**
+
+---
+
+## 13.8 Multiphase Flows
+
+**multiple phases + interaction between phases + possible phase change**
+
+---
+
+# Main Connection to Atmospheric CFD
+
+Surface-driven turbulence:
+
+**surface roughness → friction → wind shear → turbulence**
+
+Thermal effects:
+
+**temperature → density → buoyancy → stability → turbulence**
+
+Large-scale effects:
+
+**Earth rotation → Coriolis → wind field**
+
+Turbulence modelling:
+
+**RANS → mean flow + modelled turbulence**
+
+**LES → resolved large eddies + modelled small eddies**
+
+Main picture:
+
+**surface + temperature + pressure gradient + Coriolis + turbulence → atmospheric boundary-layer flow**
+
+This format should remain separated on GitHub because the important lines are separated by **actual Markdown paragraphs**, while `<br>` is only used where GitHub would otherwise merge nearby pieces of text.
