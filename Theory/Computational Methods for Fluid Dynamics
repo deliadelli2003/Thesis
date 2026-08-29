@@ -1,13 +1,3 @@
-Yes — the issue is that GitHub collapses single line breaks inside normal Markdown paragraphs. To make it stay **schematic and readable**, I’ll use real Markdown headings, blank lines, bold labels, horizontal separators, and `<br>` only where we need forced line breaks.
-
-Copy the text below **directly into your `.md` or `README.md` file**. Do not put ``` before or after it.
-
-# Computational Methods for Fluid Dynamics – Special Topics
-
-Notes from *Computational Methods for Fluid Dynamics* by Ferziger, Perić and Street.
-
----
-
 # 13.3 Flows with Variable Fluid Properties
 
 ## Fluid properties
@@ -1361,57 +1351,3 @@ The **Rayleigh-Plesset equation** can be used to describe the change of bubble r
 Main physical relation:
 
 **pressure difference → bubble-radius change → vapour formation or collapse**
-
----
-
-# Connection Between the Four Sections
-
-## 13.3 Variable Fluid Properties
-
-**temperature / pressure → density, viscosity, etc. → flow**
-
----
-
-## 13.5 Free-Surface Flows
-
-**two fluids + moving interface → interface must be calculated**
-
----
-
-## 13.7 Meteorological and Oceanographic Applications
-
-**large scales + turbulence + stratification + surface effects + Earth rotation**
-
----
-
-## 13.8 Multiphase Flows
-
-**multiple phases + interaction between phases + possible phase change**
-
----
-
-# Main Connection to Atmospheric CFD
-
-Surface-driven turbulence:
-
-**surface roughness → friction → wind shear → turbulence**
-
-Thermal effects:
-
-**temperature → density → buoyancy → stability → turbulence**
-
-Large-scale effects:
-
-**Earth rotation → Coriolis → wind field**
-
-Turbulence modelling:
-
-**RANS → mean flow + modelled turbulence**
-
-**LES → resolved large eddies + modelled small eddies**
-
-Main picture:
-
-**surface + temperature + pressure gradient + Coriolis + turbulence → atmospheric boundary-layer flow**
-
-This format should remain separated on GitHub because the important lines are separated by **actual Markdown paragraphs**, while `<br>` is only used where GitHub would otherwise merge nearby pieces of text.
