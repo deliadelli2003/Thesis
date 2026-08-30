@@ -41,7 +41,10 @@ Limitations:
 
 - Form: A specific case of the Weibull with shape parameter k=2, the Rayleigh PDF is:
 
-f(v)=σ2v​e−v2/(2σ2)
+$$
+f(v) = \frac{v}{\sigma^2} e^{-\frac{v^2}{2\sigma^2}}
+$$
+
 where σ is a scale parameter related to the mean wind speed.
 
 
