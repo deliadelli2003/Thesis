@@ -502,48 +502,6 @@ Moeng uses these relationships as part of the LES surface boundary condition.
 
 ---
 
-# Connection to Paulson (1970)
-
-Paulson focuses mainly on the **surface layer**.
-
-Paulson:
-
-**stability**
-
-↓
-
-**MOST functions**
-
-↓
-
-**wind and temperature profiles**
-
-Moeng takes the next step.
-
-Moeng:
-
-**surface-layer similarity**
-
-↓
-
-**surface momentum and heat fluxes**
-
-↓
-
-**LES boundary conditions**
-
-↓
-
-**turbulence throughout the PBL**
-
-Therefore:
-
-```math id="moeng-paulson"
-\text{Paulson surface theory}\rightarrow\text{Moeng LES surface model}\rightarrow\text{PBL turbulence}
-```
-
----
-
 # Upper Boundary
 
 At the top of the computational domain, Moeng imposes conditions such as:
