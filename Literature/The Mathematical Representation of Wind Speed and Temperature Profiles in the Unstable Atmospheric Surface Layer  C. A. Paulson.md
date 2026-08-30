@@ -1,57 +1,54 @@
+Yes — below is the **paste-ready `.md` version**, with normal Markdown text and GitHub-safe `math` blocks. It follows the Paulson (1970) paper you uploaded. 
+
 # Paulson (1970) — Wind Speed and Temperature Profiles in the Unstable Atmospheric Surface Layer
 
 ## Aim of the paper
 
 Paulson studies the vertical profiles of **mean wind speed** and **potential temperature** in the **unstable atmospheric surface layer**.
 
-The starting point is **Monin–Obukhov Similarity Theory (MOST)**.
+The starting point is **Monin–Obukhov Similarity Theory (MOST)**. MOST gives relationships for the vertical gradients of wind speed and temperature. Paulson integrates these gradient relationships to obtain expressions for the actual profiles of wind speed and potential temperature.
 
-MOST gives relationships for the vertical gradients of wind speed and temperature. Paulson integrates these gradient relationships to obtain equations for the actual profiles:
-
-$$
+```math
 u(z)
-$$
+```
 
-and
-
-$$
+```math
 \theta(z)
-$$
+```
 
 The different mathematical representations are then compared with atmospheric measurements from **Kerang, Australia**.
 
-The paper considers **unstable stratification**, therefore:
+The paper considers unstable atmospheric conditions:
 
-$$
-L < 0
-$$
+```math
+L<0
+```
 
-and:
+and therefore:
 
-$$
-\frac{z}{L} < 0
-$$
+```math
+\frac{z}{L}<0
+```
 
 where:
 
-* $z$ = height above the surface
-* $L$ = Monin–Obukhov length
+**z** = height above the surface
 
-The ratio $z/L$ represents atmospheric stability.
+**L** = Monin–Obukhov length
+
+The ratio **z/L** is the main stability parameter used in the paper.
 
 ---
 
 # Atmospheric Surface Layer
 
-The **surface layer** is the lowest part of the atmospheric boundary layer.
+The **surface layer** is the lowest part of the Atmospheric Boundary Layer.
 
-Main assumption of MOST:
-
-**turbulent momentum and heat fluxes are approximately constant with height**
+In this region, the turbulent fluxes of momentum and heat are approximately constant with height.
 
 The two main processes considered are:
 
-**momentum transfer** → connected with surface stress and wind
+**momentum transfer** → connected with surface stress and wind speed
 
 **heat transfer** → connected with surface heating/cooling and potential temperature
 
@@ -61,118 +58,109 @@ Atmospheric stability modifies both processes.
 
 # Main Variables
 
-$u$ = mean wind speed
+**u** = mean wind speed
 
-$\theta$ = potential temperature
+**θ** = potential temperature
 
-$z$ = height above the surface
+**z** = height above the ground
 
-$z_0$ = aerodynamic roughness length
+**z₀** = aerodynamic roughness length
 
-$u_*$ = friction velocity
+**u*** = friction velocity
 
-$\theta_*$ = temperature scale
+**θ*** = temperature scale
 
-$\kappa$ = von Kármán constant, approximately:
+**κ** = von Kármán constant
 
-$$
+```math
 \kappa \approx 0.4
-$$
+```
 
-$L$ = Monin–Obukhov length
+**L** = Monin–Obukhov length
 
-$Ri$ = gradient Richardson number
+**Ri** = gradient Richardson number
 
-$\phi_1$ = dimensionless wind-gradient function
+**φ₁** = dimensionless wind-gradient function
 
-$\phi_2$ = dimensionless temperature-gradient function
+**φ₂** = dimensionless temperature-gradient function
 
-$\psi_1$ = integrated wind stability correction
+**ψ₁** = integrated wind stability correction
 
-$\psi_2$ = integrated temperature stability correction
+**ψ₂** = integrated temperature stability correction
 
 In more modern notation:
 
-$$
+```math
 \phi_1 \approx \phi_m
-$$
+```
 
-$$
+```math
 \phi_2 \approx \phi_h
-$$
+```
 
-$$
+```math
 \psi_1 \approx \psi_m
-$$
+```
 
-$$
+```math
 \psi_2 \approx \psi_h
-$$
+```
 
 ---
 
 # Friction Velocity
 
-The friction velocity is defined from the surface shear stress:
+The friction velocity is related to the surface shear stress:
 
-$$
-u_* =
-\sqrt{
-\frac{\tau}{\rho}
-}
-$$
+```math
+u_*=\sqrt{\frac{\tau}{\rho}}
+```
 
 where:
 
-* $\tau$ = surface shear stress
-* $\rho$ = air density
+**τ** = surface shear stress
 
-Despite its name, $u_*$ is not simply the wind velocity.
+**ρ** = air density
 
-It is a velocity scale representing the strength of the momentum exchange between the surface and the atmosphere.
+The friction velocity is not simply the local wind velocity. It is a velocity scale representing the strength of momentum transfer between the surface and the atmosphere.
 
-Therefore:
-
-**surface stress increases → $u_*$ increases**
+Higher surface stress → larger friction velocity.
 
 ---
 
 # Dimensionless Wind Gradient
 
-Paulson defines:
+Paulson defines the dimensionless wind-gradient function as:
 
-$$
-\phi_1
-=
-\frac{\kappa z}{u_*}
-\frac{\partial u}{\partial z}
-$$
+```math
+\phi_1=\frac{\kappa z}{u_*}\frac{\partial u}{\partial z}
+```
 
 The term:
 
-$$
+```math
 \frac{\partial u}{\partial z}
-$$
+```
 
-is the vertical wind-speed gradient.
+is the vertical gradient of wind speed.
 
-$\phi_1$ describes how atmospheric stability modifies this gradient.
+The function **φ₁** describes how atmospheric stability modifies this gradient.
 
-Under neutral conditions:
+For neutral conditions:
 
-$$
-\phi_1 = 1
-$$
+```math
+\phi_1=1
+```
 
-Under non-neutral conditions:
+For non-neutral conditions:
 
-$$
-\phi_1 \neq 1
-$$
+```math
+\phi_1\neq1
+```
 
 Therefore:
 
-**stability → $\phi_1$ → modification of wind gradient**
+**atmospheric stability → φ₁ → modification of the wind-speed gradient**
 
 ---
 
@@ -180,26 +168,23 @@ Therefore:
 
 For potential temperature:
 
-$$
-\phi_2
-=
-\frac{z}{\theta_*}
-\frac{\partial \theta}{\partial z}
-$$
+```math
+\phi_2=\frac{z}{\theta_*}\frac{\partial\theta}{\partial z}
+```
 
-where:
+The term:
 
-$$
-\frac{\partial \theta}{\partial z}
-$$
+```math
+\frac{\partial\theta}{\partial z}
+```
 
-is the vertical potential-temperature gradient.
+is the vertical gradient of potential temperature.
 
 Therefore:
 
-**$\phi_1$ → momentum / wind**
+**φ₁ → momentum / wind**
 
-**$\phi_2$ → heat / temperature**
+**φ₂ → heat / temperature**
 
 Both functions depend on atmospheric stability.
 
@@ -207,253 +192,197 @@ Both functions depend on atmospheric stability.
 
 # From Gradient Functions to Actual Profiles
 
-The $\phi$-functions only describe **gradients**.
+The φ-functions describe **gradients**, not the actual value of wind speed or temperature at a certain height.
 
 For example:
 
-$$
-\phi_1
-\rightarrow
-\frac{\partial u}{\partial z}
-$$
+```math
+\phi_1 \rightarrow \frac{\partial u}{\partial z}
+```
 
-but a surface-layer model often needs the actual wind speed:
+but atmospheric models need:
 
-$$
+```math
 u(z)
-$$
+```
 
-For this reason, Paulson integrates the $\phi$-functions.
+For this reason, Paulson integrates the φ-functions.
 
-This produces the stability correction functions:
+The integration produces:
 
-$$
+```math
 \psi_1
-$$
+```
 
 for momentum and:
 
-$$
+```math
 \psi_2
-$$
+```
 
 for heat.
 
 Main relation:
 
-$$
-\boxed{
-\phi
-\rightarrow
-\text{integration}
-\rightarrow
-\psi
-}
-$$
+**φ = gradient correction**
+
+↓
+
+**integration**
+
+↓
+
+**ψ = profile correction**
+
+This distinction is one of the main ideas of the paper.
 
 ---
 
 # Wind-Speed Profile
 
-The integrated wind profile is:
+The integrated wind profile can be written as:
 
-$$
-u(z)
-=
-\frac{u_*}{\kappa}
-\left[
+```math
+u(z)=\frac{u_*}{\kappa}\left[\ln\left(\frac{z}{z_0}\right)-\psi_1\right]
+```
+
+The logarithmic term:
+
+```math
 \ln\left(\frac{z}{z_0}\right)
--
-\psi_1
-\right]
-$$
+```
+
+represents the neutral logarithmic wind profile.
 
 The term:
 
-$$
-\ln\left(\frac{z}{z_0}\right)
-$$
-
-is the normal logarithmic wind-profile contribution.
-
-The term:
-
-$$
+```math
 \psi_1
-$$
+```
 
-corrects the logarithmic profile for atmospheric stability.
+corrects this profile for atmospheric stability.
 
 Therefore:
 
-$$
-\boxed{
-\text{logarithmic profile}
--
-\text{stability correction}
-=
-\text{non-neutral wind profile}
-}
-$$
+**neutral logarithmic profile + stability correction → non-neutral wind profile**
 
 ---
 
 # Potential-Temperature Profile
 
-For temperature:
+The corresponding potential-temperature profile is:
 
-$$
-\theta-\theta_0
-=
-\theta_*
-\left[
-\ln\left(\frac{z}{z_0}\right)
--
-\psi_2
-\right]
-$$
+```math
+\theta-\theta_0=\theta_*\left[\ln\left(\frac{z}{z_0}\right)-\psi_2\right]
+```
 
-where $\theta_0$ is a reference/surface potential temperature.
+where:
+
+**θ₀** = reference or surface potential temperature
+
+**θ*** = temperature scale
+
+**ψ₂** = heat-stability correction
 
 Again:
 
-$$
-\text{logarithmic profile}
--
-\text{stability correction}
-$$
-
-gives the non-neutral temperature profile.
+**neutral profile + stability correction → non-neutral temperature profile**
 
 ---
 
-# Definition of the Integrated Stability Corrections
+# Integrated Stability Corrections
 
-Paulson defines:
+The ψ-functions are obtained by integrating the corresponding φ-functions.
 
-$$
-\psi_1
-=
-\int
-\frac{1-\phi_1(\xi)}{\xi}
-\,d\xi
-$$
+For momentum:
 
-and:
+```math
+\psi_1=\int\frac{1-\phi_1(\xi)}{\xi}\,d\xi
+```
 
-$$
-\psi_2
-=
-\int
-\frac{1-\phi_2(\xi)}{\xi}
-\,d\xi
-$$
+For heat:
 
-where $\xi$ is a dimensionless coordinate related to $z/L$.
+```math
+\psi_2=\int\frac{1-\phi_2(\xi)}{\xi}\,d\xi
+```
 
-The distinction is:
+The variable **ξ** represents a dimensionless stability coordinate related to **z/L**.
 
-**$\phi$ → correction of the gradient**
+Therefore:
 
-**$\psi$ → correction of the complete profile**
+**φm, φh → gradients**
 
-This is one of the central ideas of the paper.
+**ψm, ψh → integrated profile corrections**
 
 ---
 
 # Businger–Dyer Representation
 
-The most important representation considered by Paulson is the **Businger–Dyer formulation**.
+One of the main formulations examined by Paulson is the **Businger–Dyer representation**.
 
-For unstable atmospheric conditions, the momentum-gradient function is:
+For unstable atmospheric conditions, the momentum function is:
 
-$$
-\phi_1
-=
-\left[
-1-\gamma\frac{z}{L}
-\right]^{-1/4}
-$$
+```math
+\phi_1=\left(1-\gamma\frac{z}{L}\right)^{-1/4}
+```
 
-The heat-gradient function is:
+The temperature function is:
 
-$$
-\phi_2
-=
-\left[
-1-\gamma\frac{z}{L}
-\right]^{-1/2}
-$$
+```math
+\phi_2=\left(1-\gamma\frac{z}{L}\right)^{-1/2}
+```
 
 Paulson finds that approximately:
 
-$$
-\gamma = 16
-$$
+```math
+\gamma=16
+```
 
-provides the best simultaneous representation of the observed wind and temperature profiles.
+provides the best simultaneous representation of the measured wind and temperature profiles.
 
 The equations therefore become:
 
-$$
-\phi_m
-=
-\left(
-1-16\frac{z}{L}
-\right)^{-1/4}
-$$
+```math
+\phi_m=\left(1-16\frac{z}{L}\right)^{-1/4}
+```
 
 and:
 
-$$
-\phi_h
-=
-\left(
-1-16\frac{z}{L}
-\right)^{-1/2}
-$$
+```math
+\phi_h=\left(1-16\frac{z}{L}\right)^{-1/2}
+```
 
 ---
 
 # Physical Meaning of the Businger–Dyer Functions
 
-For an unstable atmosphere:
+For unstable atmospheric conditions:
 
-$$
-L < 0
-$$
+```math
+L<0
+```
 
-therefore:
+Therefore:
 
-$$
+```math
 \frac{z}{L}<0
-$$
+```
 
-and consequently:
+and:
 
-$$
+```math
 1-16\frac{z}{L}>1
-$$
+```
 
-The values of $\phi_m$ and $\phi_h$ therefore differ from their neutral value.
+The values of **φm** and **φh** differ from the neutral value.
 
 Physically:
 
-**surface heating → buoyancy → atmospheric instability → change in vertical gradients**
+**surface heating → buoyancy → unstable atmosphere → modification of wind and temperature gradients**
 
-The complete chain is:
+The complete relation is:
 
-$$
-\boxed{
-\text{stability}
-\rightarrow
-\frac{z}{L}
-\rightarrow
-\phi_m,\phi_h
-\rightarrow
-\text{wind and temperature gradients}
-}
-$$
+**stability → z/L → φm and φh → vertical wind and temperature gradients**
 
 ---
 
@@ -461,15 +390,13 @@ $$
 
 Paulson analytically integrates the Businger–Dyer gradient functions.
 
-He defines:
+He introduces:
 
-$$
-x
-=
-\left(
-1-16\frac{z}{L}
-\right)^{1/4}
-$$
+```math
+x=\left(1-16\frac{z}{L}\right)^{1/4}
+```
+
+This auxiliary variable simplifies the integrated expressions.
 
 ---
 
@@ -477,250 +404,167 @@ $$
 
 The integrated momentum correction is:
 
-$$
-\psi_m
-=
-2\ln\left(\frac{1+x}{2}\right)
-+
-\ln\left(\frac{1+x^2}{2}\right)
--
-2\tan^{-1}(x)
-+
-\frac{\pi}{2}
-$$
+```math
+\psi_m=2\ln\left(\frac{1+x}{2}\right)+\ln\left(\frac{1+x^2}{2}\right)-2\tan^{-1}(x)+\frac{\pi}{2}
+```
 
-The corrected wind profile therefore becomes:
+The wind-speed profile becomes:
 
-$$
-u(z)
-=
-\frac{u_*}{\kappa}
-\left[
-\ln\left(\frac{z}{z_0}\right)
--
-\psi_m
-\right]
-$$
+```math
+u(z)=\frac{u_*}{\kappa}\left[\ln\left(\frac{z}{z_0}\right)-\psi_m\right]
+```
 
-So:
+The calculation sequence is:
 
-$$
-\frac{z}{L}
-\rightarrow
-x
-\rightarrow
-\psi_m
-\rightarrow
-u(z)
-$$
+**z/L → x → ψm → u(z)**
 
 ---
 
 ## Heat Correction
 
-For heat, the integrated correction is:
+The integrated heat correction is:
 
-$$
-\psi_h
-=
-2\ln\left(
-\frac{1+x^2}{2}
-\right)
-$$
+```math
+\psi_h=2\ln\left(\frac{1+x^2}{2}\right)
+```
 
 The potential-temperature profile becomes:
 
-$$
-\theta-\theta_0
-=
-\theta_*
-\left[
-\ln\left(\frac{z}{z_0}\right)
--
-\psi_h
-\right]
-$$
+```math
+\theta-\theta_0=\theta_*\left[\ln\left(\frac{z}{z_0}\right)-\psi_h\right]
+```
 
-Therefore:
+The calculation sequence is:
 
-$$
-\frac{z}{L}
-\rightarrow
-x
-\rightarrow
-\psi_h
-\rightarrow
-\theta(z)
-$$
+**z/L → x → ψh → θ(z)**
 
 ---
 
 # Neutral Limit
 
-The formulation must recover the ordinary logarithmic law when the atmosphere approaches neutral conditions.
+The equations must recover the standard logarithmic law when atmospheric conditions approach neutral.
 
-Neutral limit:
+Neutral conditions correspond to:
 
-$$
+```math
 \frac{z}{L}\rightarrow0
-$$
+```
 
 Then:
 
-$$
+```math
 x\rightarrow1
-$$
+```
 
 and:
 
-$$
+```math
 \psi_m\rightarrow0
-$$
+```
 
-$$
+```math
 \psi_h\rightarrow0
-$$
+```
 
-The wind profile reduces to:
+The wind profile therefore becomes:
 
-$$
-u(z)
-=
-\frac{u_*}{\kappa}
-\ln\left(\frac{z}{z_0}\right)
-$$
+```math
+u(z)=\frac{u_*}{\kappa}\ln\left(\frac{z}{z_0}\right)
+```
 
-Therefore the Paulson/Businger–Dyer formulation can be understood as:
+This is the normal logarithmic wind law.
 
-$$
-\boxed{
-\text{neutral logarithmic law}
-+
-\text{correction for atmospheric stability}
-}
-$$
+Therefore, the Businger–Dyer/Paulson formulation can be understood as:
+
+**neutral logarithmic profile + correction for atmospheric stability**
 
 ---
 
 # KEYPS Representation
 
-Paulson also considers the **KEYPS representation**.
+Paulson also studies the **KEYPS representation**.
 
-Its objective is to provide a transition between:
+KEYPS attempts to describe the transition between neutral conditions and strongly unstable or free-convection conditions.
 
-**neutral conditions**
+One of its main relationships is:
 
-and:
-
-**strongly unstable / free-convection conditions**
-
-One of the main relationships is:
-
-$$
-\phi_1^4
--
-\gamma
-\left(
-\frac{z}{L'}
-\right)
-\phi_1^3
-=
-1
-$$
+```math
+\phi_1^4-\gamma\left(\frac{z}{L'}\right)\phi_1^3=1
+```
 
 where:
 
-$$
+```math
 L'=\alpha L
-$$
+```
 
-The parameter $\alpha$ is related to the turbulent transport coefficients:
+The parameter **α** is related to the turbulent transport of heat and momentum.
 
-$$
-\alpha
-=
-\frac{K_h}{K_m}
-$$
+```math
+\alpha=\frac{K_h}{K_m}
+```
 
 where:
 
-$K_h$ = turbulent transfer coefficient for heat
+**Kh** = turbulent transfer coefficient for heat
 
-$K_m$ = turbulent transfer coefficient for momentum
+**Km** = turbulent transfer coefficient for momentum
 
 ---
 
-# Turbulent Prandtl Number and α
+# Role of α
 
 If:
 
-$$
+```math
 \alpha=1
-$$
+```
 
-heat and momentum are assumed to have similar turbulent transfer behaviour.
+heat and momentum are assumed to have similar turbulent transport behaviour.
 
-This leads to:
+This gives approximately:
 
-$$
+```math
 \phi_2=\phi_1
-$$
+```
 
-and:
+and therefore:
 
-$$
+```math
 \psi_2=\psi_1
-$$
+```
 
-Paulson finds that this assumption causes difficulties when reproducing the observed temperature profiles.
+Paulson finds that this assumption is one of the weaknesses of the KEYPS representation when temperature profiles are considered.
 
-The wind profile can still be represented reasonably well, but temperature is less accurate.
-
-This suggests:
-
-$$
-\boxed{
-\alpha
-\text{ should not necessarily be constant with stability}
-}
-$$
+KEYPS can describe the wind profile reasonably well, but the temperature profile is represented less accurately if **α** is assumed constant.
 
 ---
 
 # Log-Linear Representation
 
-Paulson also examines a simpler approximation valid close to neutral conditions.
+Paulson also considers a simpler **log-linear approximation**.
 
-For small $|z/L|$:
+Close to neutral conditions:
 
-$$
-\phi_1
-\approx
-1
-+
-\frac{\gamma}{4}
-\frac{z}{L'}
-$$
+```math
+\phi_1\approx1+\frac{\gamma}{4}\frac{z}{L'}
+```
 
 The corresponding integrated correction is approximately:
 
-$$
-\psi_1
-\approx
--
-\frac{\gamma}{4}
-\frac{z}{L'}
-$$
+```math
+\psi_1\approx-\frac{\gamma}{4}\frac{z}{L'}
+```
 
-The approximation is based on small deviations from neutral conditions.
+This approximation assumes that the departure from neutral conditions is small.
 
 Therefore:
 
-**small $|z/L|$ → log-linear approximation can work**
+**small |z/L| → log-linear approximation can work**
 
-**large $|z/L|$ → strong instability → approximation becomes inaccurate**
+**large |z/L| → strong instability → approximation becomes inaccurate**
 
-Paulson finds that the log-linear representation performs poorly for strongly unstable cases.
+Paulson finds that the log-linear representation performs poorly under strongly unstable conditions.
 
 ---
 
@@ -728,20 +572,9 @@ Paulson finds that the log-linear representation performs poorly for strongly un
 
 The gradient Richardson number compares **buoyancy effects** with **wind-shear effects**.
 
-Paulson uses:
-
-$$
-Ri
-=
-\frac{
-\frac{g}{T}
-\frac{\partial\theta}{\partial z}
-}{
-\left(
-\frac{\partial u}{\partial z}
-\right)^2
-}
-$$
+```math
+Ri=\frac{\frac{g}{T}\frac{\partial\theta}{\partial z}}{\left(\frac{\partial u}{\partial z}\right)^2}
+```
 
 The numerator represents thermal stratification and buoyancy.
 
@@ -749,46 +582,33 @@ The denominator represents wind shear.
 
 Therefore:
 
-$$
-Ri
-\sim
-\frac{\text{buoyancy}}
-{\text{shear}}
-$$
+**Ri ≈ buoyancy / shear**
 
 For unstable conditions:
 
-$$
+```math
 Ri<0
-$$
+```
 
-Negative $Ri$ means that buoyancy promotes vertical motion and turbulence.
+A negative Richardson number indicates that buoyancy promotes vertical motion and turbulence.
 
-Paulson uses measured wind and temperature gradients to estimate $Ri$ and characterize atmospheric stability.
+Paulson uses measured wind and temperature gradients to estimate the atmospheric stability of the experimental cases.
 
 ---
 
 # Experimental Data
 
-The models are tested using **34 observations** from:
+The different mathematical representations are tested using **34 atmospheric observations** from **Kerang, Australia**.
 
-**Kerang, Australia**
+The measurements correspond to unstable stratification.
 
-Atmospheric conditions:
+The approximate measurement range is:
 
-**unstable stratification**
+```math
+0.5\text{ m} \rightarrow 16\text{ m}
+```
 
-Measurement heights:
-
-approximately:
-
-$$
-0.5\ \text{m}
-\rightarrow
-16\ \text{m}
-$$
-
-Measured quantities:
+The measured quantities are:
 
 **mean wind-speed profiles**
 
@@ -796,329 +616,241 @@ and:
 
 **temperature profiles**
 
-The objective is to determine which mathematical representation gives the best agreement with the measurements.
+The objective is to determine which mathematical representation reproduces both quantities most accurately.
 
 ---
 
-# Model-Comparison Procedure
+# Comparison Procedure
 
-For each experimental case:
+For each atmospheric observation:
 
 **measured wind and temperature profiles**
 
 ↓
 
-calculate gradients
+**calculate vertical gradients**
 
 ↓
 
-calculate $Ri$
+**calculate Richardson number**
 
 ↓
 
-determine atmospheric stability
+**determine atmospheric stability**
 
 ↓
 
-calculate $\phi$ functions
+**calculate φ-functions**
 
 ↓
 
-integrate to obtain $\psi$ functions
+**integrate to obtain ψ-functions**
 
 ↓
 
-calculate predicted:
-
-$$
-u(z)
-$$
-
-and:
-
-$$
-\theta(z)
-$$
+**calculate predicted wind and temperature profiles**
 
 ↓
 
-compare predictions with measurements
+**compare predictions with measurements**
 
-↓
+The different formulations are evaluated using the variance between the measured and predicted profiles.
 
-calculate fitting error / variance
-
-Lower variance means a better representation.
+Lower variance means better agreement with the observations.
 
 ---
 
-# Results: Wind Speed
+# Results for Wind Speed
 
-For wind-speed profiles:
+For wind-speed profiles, both the **Businger–Dyer** and **KEYPS** representations produce relatively good agreement with the measurements.
 
-**Businger–Dyer and KEYPS both give relatively good results**
+For the KEYPS model, the best wind-profile fit occurs for a value of γ around:
 
-The KEYPS representation gives its best wind-profile fit for a value of $\gamma$ around:
+```math
+\gamma\approx11
+```
 
-$$
-\gamma \approx 11
-$$
+For the Businger–Dyer model, a value around:
 
-The Businger–Dyer model gives a good representation with:
+```math
+\gamma\approx16
+```
 
-$$
-\gamma \approx 16
-$$
+gives a good representation.
 
-The difference becomes more important when temperature is also considered.
+The difference between the models becomes more important when the temperature profile is also considered.
 
 ---
 
-# Results: Temperature
+# Results for Temperature
 
 The **Businger–Dyer representation performs better for temperature**.
 
-KEYPS can reproduce wind profiles reasonably well, but the assumption of constant $\alpha$ results in poorer temperature-profile predictions.
+The KEYPS model can reproduce the wind profile reasonably well, but the assumption of a constant **α** leads to poorer temperature predictions.
 
-Paulson therefore suggests that the behaviour of $\alpha$ with atmospheric stability needs further investigation.
+This suggests that the relative turbulent transport of heat and momentum should not necessarily be treated as constant for all unstable atmospheric conditions.
 
 ---
 
-# Results: Log-Linear Model
+# Results for the Log-Linear Representation
 
-The log-linear representation gives poor agreement with the observations under strongly unstable conditions.
+The log-linear approximation does not reproduce strongly unstable conditions well.
 
 Therefore:
 
-$$
-\boxed{
-\text{log-linear model}
-\rightarrow
-\text{mainly suitable for near-neutral conditions}
-}
-$$
+**near-neutral conditions → log-linear formulation can be acceptable**
+
+**strongly unstable conditions → Businger–Dyer gives better results**
 
 ---
 
-# Main Result
+# Main Conclusion
 
-The main conclusion of the paper is that the **Businger–Dyer representation gives the best simultaneous fit** to both wind-speed and temperature profiles.
+The main conclusion of the paper is that the **Businger–Dyer representation provides the best simultaneous fit to wind-speed and potential-temperature profiles** for the unstable atmospheric observations considered.
 
 The preferred constant is approximately:
 
-$$
-\boxed{\gamma=16}
-$$
+```math
+\gamma=16
+```
 
 giving:
 
-$$
-\boxed{
-\phi_m
-=
-\left(
-1-16\frac{z}{L}
-\right)^{-1/4}
-}
-$$
+```math
+\phi_m=\left(1-16\frac{z}{L}\right)^{-1/4}
+```
 
 and:
 
-$$
-\boxed{
-\phi_h
-=
-\left(
-1-16\frac{z}{L}
-\right)^{-1/2}
-}
-$$
+```math
+\phi_h=\left(1-16\frac{z}{L}\right)^{-1/2}
+```
 
-Paulson's important contribution is the analytical integration of these gradient functions to obtain the profile corrections:
+Paulson's important contribution is the analytical integration of these gradient functions to obtain:
 
-$$
-\boxed{\psi_m}
-$$
+```math
+\psi_m
+```
 
 and:
 
-$$
-\boxed{\psi_h}
-$$
+```math
+\psi_h
+```
 
-which can then be used directly in wind-speed and potential-temperature profiles. Paulson's conclusions explicitly favor the Businger–Dyer representation for the simultaneous wind and temperature fit. 
-
----
-
-# Relevance for Atmospheric LES and Surface Models
-
-In an atmospheric LES, the computational mesh normally cannot resolve every turbulent process between the physical ground and the center of the first computational cell.
-
-A surface model therefore needs a relationship connecting:
-
-$$
-z
-$$
-
-$$
-z_0
-$$
-
-$$
-u_*
-$$
-
-$$
-L
-$$
-
-and:
-
-$$
-u(z)
-$$
-
-For thermal simulations it also needs:
-
-$$
-\theta(z)
-$$
-
-The Paulson formulation provides the integrated stability corrections needed to connect these variables.
-
-Main chain:
-
-$$
-\boxed{
-\text{MOST}
-\rightarrow
-\phi_m,\phi_h
-\rightarrow
-\text{Paulson integration}
-\rightarrow
-\psi_m,\psi_h
-\rightarrow
-u(z),\theta(z)
-}
-$$
+These integrated functions can then be inserted directly into wind-speed and potential-temperature profile equations.
 
 ---
 
-# Key Equations to Remember
+# Relevance for Atmospheric LES
 
-## Momentum gradient
+In an atmospheric LES, the computational grid normally does not resolve all turbulent processes between the physical ground and the first computational cell.
 
-$$
-\phi_m
-=
-\frac{\kappa z}{u_*}
-\frac{\partial u}{\partial z}
-$$
+A surface model therefore needs relationships connecting:
+
+**height z**
+
+**roughness length z₀**
+
+**friction velocity u***
+
+**Monin–Obukhov length L**
+
+**wind speed u(z)**
+
+and, for thermal simulations:
+
+**potential temperature θ(z)**
+
+Paulson provides the integrated stability corrections required for this type of surface-layer model.
+
+The main sequence is:
+
+**MOST**
+
+↓
+
+**dimensionless gradients φm and φh**
+
+↓
+
+**Paulson integration**
+
+↓
+
+**integrated corrections ψm and ψh**
+
+↓
+
+**wind and temperature profiles**
+
+↓
+
+**surface-layer boundary condition for atmospheric simulations**
 
 ---
 
-## Heat gradient
+# Key Equations
 
-$$
-\phi_h
-=
-\frac{z}{\theta_*}
-\frac{\partial\theta}{\partial z}
-$$
+## Friction velocity
 
----
+```math
+u_*=\sqrt{\frac{\tau}{\rho}}
+```
+
+## Dimensionless momentum gradient
+
+```math
+\phi_m=\frac{\kappa z}{u_*}\frac{\partial u}{\partial z}
+```
 
 ## Businger–Dyer momentum function
 
-$$
-\phi_m
-=
-\left(
-1-16\frac{z}{L}
-\right)^{-1/4}
-$$
-
----
+```math
+\phi_m=\left(1-16\frac{z}{L}\right)^{-1/4}
+```
 
 ## Businger–Dyer heat function
 
-$$
-\phi_h
-=
-\left(
-1-16\frac{z}{L}
-\right)^{-1/2}
-$$
-
----
+```math
+\phi_h=\left(1-16\frac{z}{L}\right)^{-1/2}
+```
 
 ## Auxiliary variable
 
-$$
-x
-=
-\left(
-1-16\frac{z}{L}
-\right)^{1/4}
-$$
-
----
+```math
+x=\left(1-16\frac{z}{L}\right)^{1/4}
+```
 
 ## Integrated momentum correction
 
-$$
-\psi_m
-=
-2\ln\left(\frac{1+x}{2}\right)
-+
-\ln\left(\frac{1+x^2}{2}\right)
--
-2\tan^{-1}(x)
-+
-\frac{\pi}{2}
-$$
-
----
+```math
+\psi_m=2\ln\left(\frac{1+x}{2}\right)+\ln\left(\frac{1+x^2}{2}\right)-2\tan^{-1}(x)+\frac{\pi}{2}
+```
 
 ## Integrated heat correction
 
-$$
-\psi_h
-=
-2\ln\left(
-\frac{1+x^2}{2}
-\right)
-$$
-
----
+```math
+\psi_h=2\ln\left(\frac{1+x^2}{2}\right)
+```
 
 ## Corrected wind profile
 
-$$
-u(z)
-=
-\frac{u_*}{\kappa}
-\left[
-\ln\left(\frac{z}{z_0}\right)
--
-\psi_m
-\right]
-$$
+```math
+u(z)=\frac{u_*}{\kappa}\left[\ln\left(\frac{z}{z_0}\right)-\psi_m\right]
+```
 
----
+## Corrected potential-temperature profile
 
-## Corrected temperature profile
+```math
+\theta-\theta_0=\theta_*\left[\ln\left(\frac{z}{z_0}\right)-\psi_h\right]
+```
 
-$$
-\theta-\theta_0
-=
-\theta_*
-\left[
-\ln\left(\frac{z}{z_0}\right)
--
-\psi_h
-\right]
-$$
+## Gradient Richardson number
+
+```math
+Ri=\frac{\frac{g}{T}\frac{\partial\theta}{\partial z}}{\left(\frac{\partial u}{\partial z}\right)^2}
+```
 
 ---
 
@@ -1128,45 +860,31 @@ $$
 
 ↓
 
-$$
-\frac{z}{L}
-$$
+**z/L**
 
 ↓
 
 **dimensionless gradient functions**
 
-$$
-\phi_m,\phi_h
-$$
+**φm and φh**
 
 ↓
 
 **integration**
 
-$$
-\phi_m \rightarrow \psi_m
-$$
+↓
 
-$$
-\phi_h \rightarrow \psi_h
-$$
+**ψm and ψh**
 
 ↓
 
-**stability-corrected profiles**
+**corrected wind and temperature profiles**
 
-$$
-u(z)
-$$
-
-$$
-\theta(z)
-$$
+**u(z) and θ(z)**
 
 ↓
 
-**comparison with Kerang measurements**
+**comparison with measurements**
 
 ↓
 
@@ -1174,8 +892,14 @@ $$
 
 ↓
 
-preferred value:
+preferred constant:
 
-$$
-\boxed{\gamma\approx16}
-$$
+```math
+\gamma\approx16
+```
+
+---
+
+# Reference
+
+Paulson, C. A. (1970). *The Mathematical Representation of Wind Speed and Temperature Profiles in the Unstable Atmospheric Surface Layer*. Journal of Applied Meteorology, 9, 857–861.
