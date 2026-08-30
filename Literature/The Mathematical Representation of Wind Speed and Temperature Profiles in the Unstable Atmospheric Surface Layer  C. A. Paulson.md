@@ -39,7 +39,7 @@ $$
 
 # 2. Rayleigh Distribution
 
-### Form: A specific case of the Weibull with shape parameter k=2, the Rayleigh PDF is:
+### Form: A specific case of the Weibull with shape parameter k = 2, the Rayleigh PDF is:
 
 $$
 f(v) = \frac{v}{\sigma^2} e^{-\frac{v^2}{2\sigma^2}}
