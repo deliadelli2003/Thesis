@@ -1,0 +1,5 @@
+Iinvestigates different statistical representations of wind speed distributions, focusing on the commonly used Weibull and Rayleigh models and comparing them with alternative series-expansion-based approaches introduced by Busing, Dyer, and Keeps. Its main aim is to evaluate how well these models represent actual wind speed data and to understand the trade-offs between simplicity, flexibility, and accuracy.
+
+The authors analyze the mathematical forms of each representation and assess their ability to fit empirical wind speed measurements through parameters derived from moments and series expansions. The Weibull distribution, with its two-parameter flexibility, is affirmed as a widely used standard that balances ease of use and reasonable accuracy. Rayleigh distribution is noted for simplicity but limited adaptability.
+
+Series expansion methods proposed by Busing, Dyer, and Keeps offer enhanced flexibility by incorporating higher-order statistical moments. These can provide more accurate fits for complex or multimodal wind speed distributions, though at the expense of increased computational complexity and sensitivity to data quality.
