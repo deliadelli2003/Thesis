@@ -2,7 +2,7 @@ Investigates different statistical representations of wind speed distributions, 
 The authors analyze the mathematical forms of each representation and assess their ability to fit empirical wind speed measurements through parameters derived from moments and series expansions. The Weibull distribution, with its two-parameter flexibility, is affirmed as a widely used standard that balances ease of use and reasonable accuracy. Rayleigh distribution is noted for simplicity but limited adaptability.
 Series expansion methods proposed by Busing, Dyer, and Keeps offer enhanced flexibility by incorporating higher-order statistical moments. These can provide more accurate fits for complex or multimodal wind speed distributions, though at the expense of increased computational complexity and sensitivity to data quality.
 
-## 1. Weibull Distribution
+# 1. Weibull Distribution
 
 ### Form: 
 The Weibull distribution is characterized by two parameters: the shape parameter k and the scale parameter c. Its probability density function (PDF) for wind speed v is given by:
@@ -37,9 +37,9 @@ $$
 
   
 
-2. Rayleigh Distribution
+# 2. Rayleigh Distribution
 
-- Form: A specific case of the Weibull with shape parameter k=2, the Rayleigh PDF is:
+### Form: A specific case of the Weibull with shape parameter k=2, the Rayleigh PDF is:
 
 $$
 f(v) = \frac{v}{\sigma^2} e^{-\frac{v^2}{2\sigma^2}}
@@ -49,21 +49,21 @@ where σ is a scale parameter related to the mean wind speed.
 
 
 
-Characteristics:
+### Characteristics:
 
 - Simpler model with only one effective parameter.
 
 - Often used as a first approximation when data is limited.
 
 
-Advantages:
+### Advantages:
 
 - Very simple and mathematically tractable.
 
 - Useful in certain theoretical or preliminary analyses.
 
 
-Limitations:
+### Limitations:
 
 - Restricted shape reduces its fitting capability compared to Weibull.
 
@@ -72,29 +72,29 @@ Limitations:
 
 
 
-3. Busing Representation
+# 3. Busing Representation
 
-Approach:
+### Approach:
 
 - Introduced by Busing, this approach expresses the wind speed distribution as an expansion based on statistical moments of the data.
 The idea is to approximate the PDF as a series with coefficients determined from moments (mean, variance, skewness, etc.).
 
 
-Characteristics:
+### Characteristics:
 
 - Captures more detailed features of the distribution than simple parametric forms.
 
 - Requires calculation of higher-order moments.
 
 
-Advantages:
+### Advantages:
 
 - Potentially more accurate for complex actual distributions.
 
 - Flexible and general approach.
 
 
-Limitations:
+### Limitations:
 
 - More mathematically complex.
 
@@ -103,29 +103,29 @@ Limitations:
 
 
 
-4. Dyer Representation
+# 4. Dyer Representation
 
-Approach:
+### Approach:
 
 - The Dyer model uses a series expansion tailored for wind speed PDFs, involving orthogonal functions or basis sets selected to match wind data characteristics.
 It provides another way to approximate PDF beyond Weibull parameterization.
 
 
-Characteristics:
+### Characteristics:
 
 - Often better fits observed wind speed histograms.
 
 - May incorporate empirical or theoretical constraints.
 
 
-Advantages:
+### Advantages:
 
 - Can capture asymmetry and kurtosis better.
 
 - Useful when Weibull does not provide adequate representation.
 
 
-Limitations:
+### Limitations:
 
 - Complexity grows with order of expansion.
 
@@ -133,28 +133,28 @@ Limitations:
 
 
 
-5. Keeps Representation
+# 5. Keeps Representation
 
-Approach:
+### Approach:
 
 - This representation involves constructing a PDF series expansion based on a functional form proposed by Keeps, designed to capture typical features seen in wind speed frequency distributions.
 
 
-Characteristics:
+### Characteristics:
 
 - Similar to Busing and Dyer, it aims at flexibility and improved fitting.
 
 - Uses moments and possibly other parameters from the data to define coefficients.
 
 
-Advantages:
+### Advantages:
 
 - Can potentially outperform Weibull and Rayleigh in specific cases.
 
 - Adaptable to varying wind regimes.
 
 
-Limitations:
+### Limitations:
 
 - Similar to other series expansions, it may be less straightforward to apply.
 
