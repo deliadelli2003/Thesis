@@ -1,5 +1,3 @@
-Yes — below is the **paste-ready `.md` version**, with normal Markdown text and GitHub-safe `math` blocks. It follows the Paulson (1970) paper you uploaded. 
-
 # Paulson (1970) — Wind Speed and Temperature Profiles in the Unstable Atmospheric Surface Layer
 
 ## Aim of the paper
@@ -897,9 +895,3 @@ preferred constant:
 ```math
 \gamma\approx16
 ```
-
----
-
-# Reference
-
-Paulson, C. A. (1970). *The Mathematical Representation of Wind Speed and Temperature Profiles in the Unstable Atmospheric Surface Layer*. Journal of Applied Meteorology, 9, 857–861.
