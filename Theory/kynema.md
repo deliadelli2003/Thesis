@@ -214,18 +214,7 @@ This is a more demanding version of the vortex test where both the interface and
 
 ## 10. Validation Cases
 
-### Sloshing tank
-
-A sloshing-tank simulation models liquid moving back and forth inside a container. It is useful for validating free-surface dynamics and gravity-driven multiphase flow.
-
-### Dam break
-
-A dam-break case starts with a column of water that is suddenly released and collapses under gravity. It is a standard validation problem for rapidly moving air-water interfaces.
-
 ### Breaking waves
 
 Breaking-wave simulations model waves becoming unstable and overturning or crashing. They are challenging multiphase cases because the air-water interface undergoes very large deformation.
 
-### Falling/inertial droplet
-
-A droplet case tracks a liquid droplet moving through another fluid under gravity or inertia. It tests how accurately the numerical method transports a small, curved fluid interface.
