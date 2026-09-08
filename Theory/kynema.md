@@ -1,5 +1,4 @@
-[kynema_sgf_concepts.md](https://github.com/user-attachments/files/31953488/kynema_sgf_concepts.md)
-# Kynema-SGF Concepts
+# Kynema-SGF 
 
 ## 1. Atmospheric Boundary Layer
 
