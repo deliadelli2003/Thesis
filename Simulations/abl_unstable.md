@@ -6,7 +6,7 @@
   → controls the heat flux from the surface  
   → in the unstable case, the surface gives heat to the air
 
-- `BoussinesqBuoyancy`  
+- `Boussines Buoyancy`  
   → activates buoyancy effects  
   → warmer air can rise and create vertical motion
 
