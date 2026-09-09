@@ -117,7 +117,58 @@ Therefore:
 ```math
 \frac{z}{L}>0
 ```
+Think of `z/L` as a simple **“how stable is the air here?” number**.
 
+- `z` = how high you are above the ground
+- `L` = a number that tells how strong heating/cooling effects are
+
+You don’t need to calculate it yet. Just read the sign:
+
+- `z/L ≈ 0` → **neutral**
+- `z/L > 0` → **stable**
+- `z/L < 0` → **unstable**
+
+### Neutral
+
+For neutral conditions:
+
+`z/L ≈ 0`
+
+Imagine there is no strong heating or cooling from the surface.
+
+The wind creates turbulence mostly because of **friction**, not because warm air is rising or cold air is sinking.
+
+So `z/L` is close to zero.
+
+Example: lower part of `abl_bds`.
+
+### Stable
+
+For stable conditions:
+
+`z/L > 0`
+
+Imagine the ground is cold.
+
+The air near the ground also gets colder and heavier, while warmer air stays above it.
+
+The air does not want to move up and down much, so turbulence is suppressed.
+
+That gives a **positive** `z/L`.
+
+Example: `abl_stable`.
+
+### Unstable
+
+For unstable conditions:
+
+`z/L < 0`
+
+Imagine the ground is warm.
+
+The air near it warms up and rises, so there is lots of vertical motion and mixing.
+
+That gives a **negative** `z/L`.
 ---
 
 # Wind Shear
