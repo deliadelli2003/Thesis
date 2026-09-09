@@ -28,3 +28,6 @@ surface heating
 → stronger vertical mixing  
 → unstable ABL  
 → `z/L < 0`
+
+
+`surface_temp_flux` = heat transferred from the surface to the air
