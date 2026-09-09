@@ -1,3 +1,7 @@
+<img width="1089" height="1021" alt="temperature" src="https://github.com/user-attachments/assets/21775a1e-66c3-49b1-aaf2-4758ecae8911" />
+
+
+
 ## 1. Simulation Time
 
 ```text
