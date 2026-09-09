@@ -117,6 +117,10 @@ Therefore:
 ```math
 \frac{z}{L}>0
 ```
+
+
+
+
 Think of `z/L` as a simple **“how stable is the air here?” number**.
 
 - `z` = how high you are above the ground
@@ -169,6 +173,10 @@ Imagine the ground is warm.
 The air near it warms up and rises, so there is lots of vertical motion and mixing.
 
 That gives a **negative** `z/L`.
+
+
+A capping inversion is basically a warm layer sitting above the ABL that acts like a lid.
+
 ---
 
 # Wind Shear
