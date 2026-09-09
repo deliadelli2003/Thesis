@@ -97,33 +97,6 @@ incflo.physics = ABL
 * Activates the **Atmospheric Boundary Layer** physics module.
 * This tells Kynema that the simulation represents atmospheric flow.
 
-### Current simulation
-
-```text
-ABL only
-```
-
-### Future thesis simulation
-
-Eventually, for air over a flat ocean, you may need something conceptually like:
-
-```text
-incflo.physics = ABL MultiPhase
-```
-
-which would give:
-
-```text
-ABL
-+
-air
-+
-water
-+
-VOF interface
-```
-
-The current `abl_bds` case contains **no water and no VOF**.
 
 ---
 
@@ -160,12 +133,6 @@ $$
           |
           ↓ g
        -9.81 m/s²
-```
-
-### Why it matters
-
-* Important for atmospheric **buoyancy**.
-* Later, in a multiphase air-water simulation, gravity also affects the **water/free surface**.
 
 ---
 
@@ -214,23 +181,6 @@ The initial wind is therefore approximately:
           │   / 40°
           │  /
 ──────────┼────────────→ x
-```
-
-### In ParaView
-
-To see wind speed:
-
-```text
-velocity → Magnitude
-```
-
-To see individual directions:
-
-```text
-velocity_X → u
-velocity_Y → v
-velocity_Z → w
-```
 
 ---
 
