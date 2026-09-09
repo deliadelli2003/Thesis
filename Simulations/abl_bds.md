@@ -36,8 +36,6 @@ time.fixed_dt  = 0.5
 ### Meaning
 
 * The simulation runs for only **5 seconds of physical time**.
-* Therefore, this case is mainly a **regression/test case**, not a fully developed atmospheric simulation.
-* For a real thesis ABL case, much longer physical simulation times will normally be necessary.
 
 ---
 
