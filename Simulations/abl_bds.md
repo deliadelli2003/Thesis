@@ -30,9 +30,8 @@ time.fixed_dt  = 0.5
 
 * Total simulated physical time:
 
-  $$
-  10 \times 0.5 = 5\;s
-  $$
+   10 times * 0.5 = 5 s
+
 
 ### Meaning
 
