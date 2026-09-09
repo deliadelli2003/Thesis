@@ -1,0 +1,259 @@
+Yes — this is probably the right level: still compact, but with enough context that future-you can understand what each line actually does.
+
+# `abl_bds.inp` — Data and Meaning
+
+### Time
+
+```text
+time.stop_time = 22000.0
+```
+
+→ Maximum allowed physical simulation time: **22,000 s**.
+The run can stop earlier if another stopping criterion is reached first.
+
+```text
+time.max_step = 10
+```
+
+→ Maximum number of timesteps: **10**.
+In this test, this is what actually stops the simulation.
+
+```text
+time.fixed_dt = 0.5
+```
+
+→ Each timestep represents **0.5 s**.
+So 10 steps correspond to **5 s of simulated physical time**.
+
+```text
+time.plot_interval = 10
+```
+
+→ Writes visualization output every **10 steps**.
+This is why you got `plt00000` and `plt00010`.
+
+```text
+time.checkpoint_interval = 5
+```
+
+→ Writes restart files every **5 steps**.
+This is why you got `chk00000`, `chk00005`, and `chk00010`.
+
+---
+
+### Physics
+
+```text
+incflo.physics = ABL
+```
+
+→ Activates the **Atmospheric Boundary Layer** model.
+This case is atmospheric only; it does not yet include water or VOF.
+
+```text
+incflo.gravity = 0.0 0.0 -9.81
+```
+
+→ Gravity acts downward in the **z-direction**.
+It is relevant for buoyancy and, later, for water in a multiphase case.
+
+---
+
+### Wind
+
+```text
+incflo.velocity = 6.128 5.142 0.0
+```
+
+→ Initial wind velocity:
+
+* `u = 6.128 m/s` in x
+* `v = 5.142 m/s` in y
+* `w = 0 m/s` vertically
+
+→ Total horizontal wind speed is about **8 m/s**.
+The wind is therefore diagonal in the x-y plane, not purely along x.
+
+---
+
+### Temperature profile
+
+```text
+ABL.temperature_heights = 650.0 750.0 1000.0
+```
+
+→ Heights where the potential temperature is prescribed.
+
+```text
+ABL.temperature_values = 300.0 308.0 308.75
+```
+
+→ Potential temperatures at those heights:
+
+* 650 m → **300 K**
+* 750 m → **308 K**
+* 1000 m → **308.75 K**
+
+→ Below 650 m, the profile is approximately constant at 300 K.
+The strong increase between 650 and 750 m represents a **capping inversion** above the ABL.
+
+---
+
+### Atmospheric forces
+
+```text
+ICNS.source_terms = BoussinesqBuoyancy CoriolisForcing ABLForcing
+```
+
+→ Activates three atmospheric source terms.
+
+* `BoussinesqBuoyancy`
+  Temperature differences create buoyancy forces, so warmer and colder air can move differently vertically.
+
+* `CoriolisForcing`
+  Includes the effect of Earth’s rotation on the wind.
+
+* `ABLForcing`
+  Helps maintain or drive the atmospheric wind instead of allowing surface friction to simply slow it down.
+
+```text
+CoriolisForcing.latitude = 41.3
+```
+
+→ Coriolis force is calculated for **41.3° latitude**.
+Latitude matters because the Coriolis effect changes with position on Earth.
+
+```text
+ABLForcing.abl_forcing_height = 90
+```
+
+→ Reference height for ABL forcing = **90 m**.
+This is related to how Kynema controls the mean atmospheric wind.
+
+---
+
+### Surface parameters
+
+```text
+ABL.kappa = 0.41
+```
+
+→ Von Kármán constant used in the near-surface wall model.
+This is a standard value and is normally not changed much.
+
+```text
+ABL.surface_roughness_z0 = 0.15
+```
+
+→ Surface roughness length = **0.15 m**.
+It controls how strongly the surface slows the near-surface wind.
+
+For your thesis, this value will be important because an ocean surface will likely require a different roughness treatment.
+
+---
+
+### Turbulence
+
+```text
+turbulence.model = Smagorinsky
+```
+
+→ Uses the **Smagorinsky LES subgrid-scale model**.
+Large turbulent structures are resolved directly, while smaller unresolved turbulence is modeled.
+
+```text
+Smagorinsky_coeffs.Cs = 0.135
+```
+
+→ Smagorinsky model coefficient = **0.135**.
+It controls the amount of modeled subgrid turbulent dissipation.
+
+---
+
+### Numerical method
+
+```text
+incflo.use_godunov = 1
+```
+
+→ Activates a Godunov-type advection method.
+
+```text
+incflo.godunov_type = "bds"
+```
+
+→ Uses the **BDS** transport scheme.
+This is mainly a numerical choice, which is why the case is called `abl_bds`.
+
+---
+
+### Computational domain
+
+```text
+geometry.prob_lo = 0.0 0.0 0.0
+geometry.prob_hi = 1000.0 1000.0 1000.0
+```
+
+→ Domain extends from `(0,0,0)` to `(1000,1000,1000)` m.
+So the simulated region is a **1 km × 1 km × 1 km cube**.
+
+---
+
+### Mesh
+
+```text
+amr.n_cell = 48 48 48
+```
+
+→ The base grid has **48 × 48 × 48 cells**.
+Each cell is about **20.8 m** wide in each direction.
+
+```text
+amr.max_level = 0
+```
+
+→ No Adaptive Mesh Refinement is used.
+The grid resolution stays uniform throughout the domain.
+
+---
+
+### Boundary conditions
+
+```text
+geometry.is_periodic = 1 1 0
+```
+
+→
+
+* x = periodic
+* y = periodic
+* z = non-periodic
+
+This represents a horizontally repeating ABL while keeping physical top and bottom boundaries.
+
+```text
+zlo.type = "wall_model"
+```
+
+→ Bottom boundary uses a **wall model**.
+This is where surface roughness and shear stress affect the wind.
+
+```text
+zhi.type = "slip_wall"
+```
+
+→ Top boundary is a **slip wall**.
+Air cannot cross the boundary vertically, but it can move tangentially along it.
+
+```text
+zhi.temperature_type = "fixed_gradient"
+```
+
+→ The top boundary fixes the vertical temperature gradient rather than fixing one temperature value.
+
+```text
+zhi.temperature = 0.003
+```
+
+→ Top potential-temperature gradient = **0.003 K/m**.
+This matches the weak temperature increase in the atmosphere above the capping inversion.
