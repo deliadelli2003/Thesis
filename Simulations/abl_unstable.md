@@ -1,5 +1,6 @@
 <img width="1206" height="1067" alt="temperature" src="https://github.com/user-attachments/assets/2b3cbda2-65b9-42f8-8db0-e36cd5f92a75" />
-## Unstable ABL — how to recognize it in the simulation
+
+## Unstable AB
 
 - `ABL.surface_temp_flux`  
   → controls the heat flux from the surface  
@@ -18,7 +19,7 @@
   → indicates unstable conditions  
   → caused by surface heating and buoyancy
 
-### Simple chain
+### Chain
 
 surface heating  
 → warm air near the ground  
