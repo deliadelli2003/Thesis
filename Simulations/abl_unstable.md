@@ -1,3 +1,4 @@
+<img width="1316" height="1095" alt="velocity_xz" src="https://github.com/user-attachments/assets/31769140-efe6-4508-b825-2684598b77ad" />
 <img width="1206" height="1067" alt="temperature" src="https://github.com/user-attachments/assets/2b3cbda2-65b9-42f8-8db0-e36cd5f92a75" />
 
 ## Unstable AB
