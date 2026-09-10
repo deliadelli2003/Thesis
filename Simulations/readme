@@ -1,3 +1,18 @@
+export KYNEMA_MANAGER=/tmp/delia/opt/kynema/kynema-manager
+source ${KYNEMA_MANAGER}/start.sh && spack-start
+spack env activate -d /tmp/delia/opt/kynema/env_kynemasgf_delia
+spack load kynema-sgf
+
+
+For changing parameters
+cd ~/Desktop/simulations/abl_unstable
+nano abl_unstable.inp
+
+change parameter 
+
+Strg + O
+Enter
+Strg + X
 
 
     Simulation duration — unstable case first. Run the exact same unstable case for 10, 100, 500, and 1000 steps. Look mainly at velocity_z and temperature. This answers the question you already encountered: when does the initially straight flow actually begin to develop visible turbulent/convective structures?
