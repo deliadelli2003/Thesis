@@ -14,6 +14,9 @@ Strg + O
 Enter
 Strg + X
 
+to run it
+kynema_sgf abl_unstable.inp
+
 
     Simulation duration — unstable case first. Run the exact same unstable case for 10, 100, 500, and 1000 steps. Look mainly at velocity_z and temperature. This answers the question you already encountered: when does the initially straight flow actually begin to develop visible turbulent/convective structures?
 
