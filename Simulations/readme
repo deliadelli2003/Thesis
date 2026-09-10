@@ -18,8 +18,7 @@ to run it
 kynema_sgf abl_unstable.inp
 
 
-    Simulation duration — unstable case first. Run the exact same unstable case for 10, 100, 500, and 1000 steps. Look mainly at velocity_z and temperature. This answers the question you already encountered: when does the initially straight flow actually begin to develop visible turbulent/convective structures?
-
+   
     Stable surface cooling strength. Keep the stable case identical and change only:
     ABL.surface_temp_rate = -0.10, -0.25 (original), -0.50.
     Compare temperature and velocity_z. You should see stronger cooling produce stronger stable stratification and more suppression of vertical mixing.
