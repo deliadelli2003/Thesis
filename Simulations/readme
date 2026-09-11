@@ -20,8 +20,6 @@ kynema_sgf abl_unstable.inp
 
    
 
-    Wind speed. Your original wind magnitude is about 8 m/s. Try roughly 4, 8, and 12 m/s, keeping the same direction. Compare the velocity profile and turbulence. This lets you see how mechanical/shear-driven turbulence changes independently of thermal stability.
-
     ABL / inversion height. Start from abl_bds. Your original profile begins its inversion at about 650 m. Create one case with a lower inversion and one with a higher inversion, while keeping the temperature difference similar. In ParaView you should literally see the neutral mixed layer becoming shallower or deeper.
 
     Inversion strength. Keep the heights fixed and change the temperature jump. For example, instead of the original 300 → 308 K, try a weaker and a stronger jump. This teaches you how strongly the capping inversion confines the ABL.
