@@ -20,8 +20,6 @@ kynema_sgf abl_unstable.inp
 
    
 
-    Surface roughness. Use one case, preferably your neutral abl_bds, and vary only ABL.surface_roughness_z0. For example, compare 0.015, 0.15 (original), and 0.30 m. Look at horizontal velocity versus height. This teaches you directly how surface drag produces wind shear. These are learning experiments, not proposed ocean roughness values.
-
     Wind speed. Your original wind magnitude is about 8 m/s. Try roughly 4, 8, and 12 m/s, keeping the same direction. Compare the velocity profile and turbulence. This lets you see how mechanical/shear-driven turbulence changes independently of thermal stability.
 
     ABL / inversion height. Start from abl_bds. Your original profile begins its inversion at about 650 m. Create one case with a lower inversion and one with a higher inversion, while keeping the temperature difference similar. In ParaView you should literally see the neutral mixed layer becoming shallower or deeper.
