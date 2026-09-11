@@ -19,10 +19,7 @@ kynema_sgf abl_unstable.inp
 
 
    
-    Stable surface cooling strength. Keep the stable case identical and change only:
-    ABL.surface_temp_rate = -0.10, -0.25 (original), -0.50.
-    Compare temperature and velocity_z. You should see stronger cooling produce stronger stable stratification and more suppression of vertical mixing.
-
+  
     Unstable surface heating strength. Keep the unstable case identical and use:
     0.5 × original flux, 1 × original flux, 2 × original flux.
     Don’t invent a new physical value yet; scaling the existing test value is better for learning. Compare velocity_z, temperature, and eventually TKE. You want to see whether stronger surface heating leads to stronger convection.
