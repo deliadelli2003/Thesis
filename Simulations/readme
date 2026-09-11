@@ -19,10 +19,6 @@ kynema_sgf abl_unstable.inp
 
 
    
-  
-    Unstable surface heating strength. Keep the unstable case identical and use:
-    0.5 × original flux, 1 × original flux, 2 × original flux.
-    Don’t invent a new physical value yet; scaling the existing test value is better for learning. Compare velocity_z, temperature, and eventually TKE. You want to see whether stronger surface heating leads to stronger convection.
 
     Surface roughness. Use one case, preferably your neutral abl_bds, and vary only ABL.surface_roughness_z0. For example, compare 0.015, 0.15 (original), and 0.30 m. Look at horizontal velocity versus height. This teaches you directly how surface drag produces wind shear. These are learning experiments, not proposed ocean roughness values.
 
