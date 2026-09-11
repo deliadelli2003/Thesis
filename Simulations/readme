@@ -16,17 +16,3 @@ Strg + X
 
 to run it
 kynema_sgf abl_unstable.inp
-
-
-   
-
-    ABL / inversion height. Start from abl_bds. Your original profile begins its inversion at about 650 m. Create one case with a lower inversion and one with a higher inversion, while keeping the temperature difference similar. In ParaView you should literally see the neutral mixed layer becoming shallower or deeper.
-
-    Inversion strength. Keep the heights fixed and change the temperature jump. For example, instead of the original 300 → 308 K, try a weaker and a stronger jump. This teaches you how strongly the capping inversion confines the ABL.
-
-    Temperature stability without changing wind. Create otherwise identical cases with a neutral, stable, and unstable thermal setup. This is particularly useful because the existing Kynema examples change several other things too. Once you do this, differences in velocity_z are much easier to attribute specifically to stability.
-
-    First mesh experiment. Once you're comfortable with those parameters, keep one physical case completely fixed and change only the mesh: for example 32³, 48³, 64³ for the same domain. Compare temperature structure, velocity fluctuations, and computational time. This begins the “create your own mesh” part your supervisor mentioned.
-
-    First custom domain. Finally, define your own geometry.prob_hi and amr.n_cell together. At that point you should calculate the resulting Δx, Δy, and Δz yourself and decide whether they are appropriate for the ABL structures you want to resolve.
-
