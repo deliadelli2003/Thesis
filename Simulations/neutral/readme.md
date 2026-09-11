@@ -1,5 +1,5 @@
 red = moves up
-blue = moves down
+, blue = moves down
 
 ---
 
