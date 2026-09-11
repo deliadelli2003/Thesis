@@ -11,6 +11,8 @@ red = moves up
 
 **Why:** Higher wind speed increases shear and mechanically generated turbulence.
 
+*higher velocity wind creates more disturbance near the ground*
+
 ---
 
 ### Surface roughness — `z0 = 0.75 m`
@@ -21,6 +23,7 @@ red = moves up
 
 **Why:** Higher roughness increases surface drag and changes the near-surface shear.
 
+*more roughness in the terrain slows air down*
 ---
 
 ### ABL/inversion height — 250 m
