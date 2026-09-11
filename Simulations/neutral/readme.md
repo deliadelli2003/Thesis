@@ -24,6 +24,7 @@ red = moves up
 **Why:** Higher roughness increases surface drag and changes the near-surface shear.
 
 *more roughness in the terrain slows air down*
+
 ---
 
 ### ABL/inversion height — 250 m
@@ -34,3 +35,4 @@ red = moves up
 
 **Why:** Changing the inversion height directly changes the temperature structure, but has little immediate effect on the near-surface vertical velocity in this short run.
 
+*inversion layer way lower*
