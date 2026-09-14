@@ -1,5 +1,7 @@
 *simulation parameters*
 
+***3.2.4 Simulations of the Atmospheric Boundary Layer***
+
 **Stable stable atmospheric boundary layer**
 We present simulations of the GEWEX Atmospheric Boundary Layer Study (GABLS)-1 case, a stably stratified ABL. This case is based on the original simulations in [104] and further investigated with many ABL flow solvers [105]. The flow is driven by a uniform, moderate geostrophic wind of 8 m/s
 , aligned in the 𝑥
@@ -21,3 +23,7 @@ cells). The turbulence model used for these simulations is the constant-coeffici
 Simulation results and comparisons to reference data at Δ⁢𝑥 =Δ⁢𝑦 =Δ⁢𝑧 =0.39 m
 [106], case C are presented in Figures 9-11. The stable stratification and cooling effects at the ground are clearly visible in Figure 9. These show that the AMR-Wind results (i.e., the structure of the temperature field and the inclined temperature fronts) qualitatively match the results computed in other simulations (e.g., [106]). Figure 10 illustrates the flow field for a slice at 𝑧 =100 m
 . Figure 11 compares the mean profiles of horizontal velocity magnitude, wind direction, potential temperature, and vertical heat flux to the reference simulation. There is good agreement between the simulations for all quantities.
+
+Paper 
+
+<img width="500" height="297" alt="image" src="https://github.com/user-attachments/assets/07790a48-b6f6-402d-b0cf-220dbacf39c7" />
