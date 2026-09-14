@@ -1,3 +1,4 @@
+<img width="1294" height="1080" alt="Screenshot_20260914_133105" src="https://github.com/user-attachments/assets/37bf036c-e77c-4e03-a23e-5e83b4f0eca6" />
 *mesh 200 200 200*
 
 *ABL.surface_temp_rate = -0.25*
