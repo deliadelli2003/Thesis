@@ -170,7 +170,7 @@ Finally:
 }
 ```
 
-```
+
 The additional quantity
 
 ```math
