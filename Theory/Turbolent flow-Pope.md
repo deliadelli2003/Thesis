@@ -169,7 +169,9 @@ Finally:
 -\frac{\partial\langle u_i u_j\rangle}{\partial x_i}
 }
 ```
-The additional quantity
+
+
+The additional quantityReynolds equation
 
 ```math
 \langle u_i u_j\rangle
@@ -184,5 +186,3 @@ Its effect on the mean flow appears through the term:
 ```
 
 Therefore, the Reynolds equation has the same general structure as the Navier–Stokes equation, but contains an additional term describing the effect of turbulence on the mean flow.
-
-The Reynolds stresses cannot be calculated from the mean velocity alone. Additional equations or turbulence models are therefore required. This is known as the **turbulence closure problem**.
