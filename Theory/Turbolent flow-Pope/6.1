@@ -1,0 +1,349 @@
+## 6.1 Energy cascade and Kolmogorov hypotheses
+
+At high Reynolds numbers, turbulent flow contains motions of many different sizes. These motions can be represented as **eddies**.
+
+An eddy of size $\ell$ has:
+
+- characteristic velocity $u(\ell)$;
+- characteristic timescale $\tau(\ell)$.
+
+```math
+\tau(\ell)=\frac{\ell}{u(\ell)}
+```
+
+An eddy is a relatively coherent turbulent motion occupying a region of characteristic size $\ell$. Large eddies may contain many smaller eddies.
+
+### 6.1.1 Energy cascade
+
+The largest eddies have a characteristic size and velocity:
+
+```math
+\ell_0\sim L,
+\qquad
+u_0\sim u'\sim U
+```
+
+where \(L\) and \(U\) are the characteristic length and velocity of the mean flow.
+
+Their Reynolds number is:
+
+```math
+Re_0=\frac{u_0\ell_0}{\nu}
+```
+
+At high Reynolds numbers, \(Re_0\) is large, so viscosity has little direct effect on the largest eddies.
+
+Large eddies are unstable and transfer their energy to smaller eddies. These eddies transfer energy to even smaller eddies, producing the **energy cascade**:
+
+```math
+\text{large eddies}
+\longrightarrow
+\text{smaller eddies}
+\longrightarrow
+\text{dissipative eddies}
+```
+
+The process continues until the eddy Reynolds number becomes sufficiently small:
+
+```math
+Re(\ell)=\frac{u(\ell)\ell}{\nu}
+```
+
+At these small scales, viscosity becomes important and converts turbulent kinetic energy into heat.
+
+The largest eddies contain energy of order \(u_0^2\) and have a timescale:
+
+```math
+\tau_0=\frac{\ell_0}{u_0}
+```
+
+Therefore, the energy-transfer and dissipation rate scales as:
+
+```math
+\varepsilon
+\sim
+\frac{u_0^2}{\tau_0}
+=
+\frac{u_0^3}{\ell_0}
+```
+
+At sufficiently high Reynolds numbers, the dissipation rate is determined by the energy supplied by the large eddies and is approximately independent of viscosity.
+
+### 6.1.2 Kolmogorov hypotheses
+
+Large eddies are influenced by the flow geometry and boundary conditions, so they are generally anisotropic. As energy passes to progressively smaller scales, this directional information is gradually lost.
+
+#### Local-isotropy hypothesis
+
+At sufficiently high Reynolds numbers, the small-scale turbulent motions are statistically isotropic:
+
+```math
+\ell\ll\ell_0
+```
+
+This means that the statistical properties of the small eddies are approximately the same in every direction, even when the large-scale flow is anisotropic.
+
+The scale \(\ell_{EI}\) separates the anisotropic large eddies from the approximately isotropic small eddies:
+
+```math
+\ell>\ell_{EI}
+\quad\text{large and anisotropic}
+```
+
+```math
+\ell<\ell_{EI}
+\quad\text{small and locally isotropic}
+```
+
+#### First similarity hypothesis
+
+At sufficiently high Reynolds numbers, the statistics of the small-scale motions have a universal form determined only by:
+
+- the kinematic viscosity \(\nu\);
+- the dissipation rate \(\varepsilon\).
+
+The range
+
+```math
+\ell<\ell_{EI}
+```
+
+is called the **universal equilibrium range**.
+
+From \(\nu\) and \(\varepsilon\), the Kolmogorov length, velocity and time scales can be constructed:
+
+```math
+\eta=
+\left(
+\frac{\nu^3}{\varepsilon}
+\right)^{1/4}
+```
+
+```math
+u_\eta=(\varepsilon\nu)^{1/4}
+```
+
+```math
+\tau_\eta=
+\left(
+\frac{\nu}{\varepsilon}
+\right)^{1/2}
+```
+
+These scales describe the smallest dissipative eddies.
+
+Their Reynolds number is equal to one:
+
+```math
+\frac{\eta u_\eta}{\nu}=1
+```
+
+This indicates that viscous effects are important at the Kolmogorov scale.
+
+The dissipation rate can also be written as:
+
+```math
+\varepsilon
+=
+\nu
+\left(
+\frac{u_\eta}{\eta}
+\right)^2
+=
+\frac{\nu}{\tau_\eta^2}
+```
+
+At high Reynolds numbers, all small-scale turbulent fields have statistically similar behaviour when normalized using the Kolmogorov scales.
+
+The ratios between the smallest and largest scales are:
+
+```math
+\frac{\eta}{\ell_0}\sim Re^{-3/4}
+```
+
+```math
+\frac{u_\eta}{u_0}\sim Re^{-1/4}
+```
+
+```math
+\frac{\tau_\eta}{\tau_0}\sim Re^{-1/2}
+```
+
+Therefore, as the Reynolds number increases:
+
+- the smallest eddies become much smaller than the largest eddies;
+- their characteristic velocities decrease;
+- their characteristic timescales decrease.
+
+#### Second similarity hypothesis
+
+At very high Reynolds numbers, an intermediate range exists between the large energy-containing eddies and the small dissipative eddies:
+
+```math
+\eta\ll\ell\ll\ell_0
+```
+
+This is the **inertial subrange**. Here viscosity is negligible, so the statistics depend only on the dissipation rate \(\varepsilon\), not directly on \(\nu\).
+
+The turbulent scales can be divided into three main ranges:
+
+1. **Energy-containing range:** large eddies contain most of the turbulent kinetic energy.
+
+2. **Inertial subrange:** energy is transferred between scales with negligible viscous effects.
+
+3. **Dissipation range:** viscosity converts turbulent kinetic energy into heat.
+
+The characteristic velocity and time of an eddy in the inertial subrange are:
+
+```math
+u(\ell)
+=
+(\varepsilon\ell)^{1/3}
+```
+
+```math
+\tau(\ell)
+=
+\left(
+\frac{\ell^2}{\varepsilon}
+\right)^{1/3}
+```
+
+Equivalently:
+
+```math
+u(\ell)
+=
+u_\eta
+\left(
+\frac{\ell}{\eta}
+\right)^{1/3}
+\sim
+u_0
+\left(
+\frac{\ell}{\ell_0}
+\right)^{1/3}
+```
+
+```math
+\tau(\ell)
+=
+\tau_\eta
+\left(
+\frac{\ell}{\eta}
+\right)^{2/3}
+\sim
+\tau_0
+\left(
+\frac{\ell}{\ell_0}
+\right)^{2/3}
+```
+
+Thus, smaller eddies have smaller characteristic velocities and shorter lifetimes.
+
+### Constant energy transfer
+
+Let \(T(\ell)\) be the rate at which energy is transferred from eddies larger than \(\ell\) to eddies smaller than \(\ell\).
+
+The transfer rate scales as:
+
+```math
+T(\ell)
+\sim
+\frac{u(\ell)^2}{\tau(\ell)}
+```
+
+Using the inertial-range scales:
+
+```math
+\frac{u(\ell)^2}{\tau(\ell)}
+=
+\varepsilon
+```
+
+Therefore, the energy-transfer rate is constant throughout the inertial subrange:
+
+```math
+T(\ell)=\varepsilon
+```
+
+The same energy rate passes through every intermediate scale:
+
+```math
+\text{production}
+\longrightarrow
+\text{constant transfer}
+\longrightarrow
+\text{dissipation}
+```
+
+Hence:
+
+```math
+T_{EI}
+=
+T(\ell)
+=
+T_{DI}
+=
+\varepsilon
+```
+
+Energy enters through the large eddies, passes through the inertial subrange without significant loss and is finally dissipated by viscosity at the smallest scales.
+
+### 6.1.3 Energy spectrum
+
+The energy spectrum \(E(\kappa)\) describes how turbulent kinetic energy is distributed among eddies of different sizes.
+
+The eddy size \(\ell\) is related to the wavenumber \(\kappa\) by:
+
+```math
+\kappa=\frac{2\pi}{\ell}
+```
+
+Therefore:
+
+- small \(\kappa\) corresponds to large eddies;
+- large \(\kappa\) corresponds to small eddies.
+
+The turbulent kinetic energy contained between two wavenumbers is:
+
+```math
+k_{(\kappa_a,\kappa_b)}
+=
+\int_{\kappa_a}^{\kappa_b}
+E(\kappa)\,d\kappa
+```
+
+The corresponding contribution to the dissipation rate is:
+
+```math
+\varepsilon_{(\kappa_a,\kappa_b)}
+=
+\int_{\kappa_a}^{\kappa_b}
+2\nu\kappa^2E(\kappa)\,d\kappa
+```
+
+The factor \(\kappa^2\) shows why dissipation is concentrated at high wavenumbers, corresponding to the smallest eddies.
+
+In the inertial subrange, Kolmogorov’s second similarity hypothesis gives:
+
+```math
+E(\kappa)
+=
+C\varepsilon^{2/3}\kappa^{-5/3}
+```
+
+where \(C\) is a universal constant.
+
+This is the **Kolmogorov \(-5/3\) spectrum**. It shows how turbulent kinetic energy decreases as the wavenumber increases within the inertial subrange.
+
+The complete cascade can therefore be summarized as:
+
+```math
+\text{large scales}
+\;\xrightarrow{\text{energy transfer}}\;
+\text{inertial subrange}
+\;\xrightarrow{\text{constant rate }\varepsilon}\;
+\text{small dissipative scales}
+```
