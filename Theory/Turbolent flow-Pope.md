@@ -170,8 +170,8 @@ Finally:
 }
 ```
 
-
-The additional quantityReynolds equation
+```
+The additional quantity
 
 ```math
 \langle u_i u_j\rangle
