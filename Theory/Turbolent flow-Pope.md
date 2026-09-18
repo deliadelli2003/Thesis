@@ -1,4 +1,4 @@
-## 4. Mean-flow equations — basic concept
+## 4.1 Reynolds equations
 
 In turbulent flow, the instantaneous velocity changes continuously with position and time. Reynolds decomposition separates it into a mean velocity and a turbulent fluctuation:
 
@@ -169,3 +169,20 @@ Finally:
 -\frac{\partial\langle u_i u_j\rangle}{\partial x_i}
 }
 ```
+The additional quantity
+
+```math
+\langle u_i u_j\rangle
+```
+
+is called the **Reynolds-stress tensor**. It represents the transport of momentum caused by turbulent velocity fluctuations.
+
+Its effect on the mean flow appears through the term:
+
+```math
+-\frac{\partial\langle u_i u_j\rangle}{\partial x_i}
+```
+
+Therefore, the Reynolds equation has the same general structure as the Navier–Stokes equation, but contains an additional term describing the effect of turbulence on the mean flow.
+
+The Reynolds stresses cannot be calculated from the mean velocity alone. Additional equations or turbulence models are therefore required. This is known as the **turbulence closure problem**.
