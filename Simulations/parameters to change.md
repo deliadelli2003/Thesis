@@ -24,3 +24,28 @@
 | Upper temperature gradient | `zhi.temperature` | `0.003` | `0.0` | __________ | Proposed neutral thermal condition |
 | Statistics output | `ABL.stats_output_frequency` | Not included | __________ | __________ | Needed for mean profiles and turbulence statistics |
 
+
+*keep unchanged*
+| Section | Parameter | Value |
+|---|---|---:|
+| Gravity | `incflo.gravity` | `0.0 0.0 -9.81` |
+| Numerical method | `incflo.use_godunov` | `1` |
+| Numerical method | `incflo.godunov_type` | `"bds"` |
+| Numerical method | `incflo.diffusion_type` | `2` |
+| Transport | `transport.laminar_prandtl` | `0.7` |
+| Transport | `transport.turbulent_prandtl` | `0.3333` |
+| Turbulence model | `turbulence.model` | `Smagorinsky` |
+| Smagorinsky coefficient | `Smagorinsky_coeffs.Cs` | `0.135` |
+| Physics model | `incflo.physics` | `ABL` |
+| von Kármán constant | `ABL.kappa` | `0.41` |
+| AMR | `amr.max_level` | `0` |
+| Lower domain corner | `geometry.prob_lo` | `0.0 0.0 0.0` |
+| Periodicity | `geometry.is_periodic` | `1 1 0` |
+| Bottom boundary | `zlo.type` | `"wall_model"` |
+| Top boundary | `zhi.type` | `"slip_wall"` |
+| Top thermal condition | `zhi.temperature_type` | `"fixed_gradient"` |
+| Verbosity | `incflo.verbose` | `0` |
+| Memory management | `amrex.the_arena_is_managed` | `1` |
+| Asynchronous output | `amrex.async_out` | `0` |
+| Initial memory size | `amrex.the_arena_init_size` | `4500000000` |
+```
