@@ -8,8 +8,9 @@
 - **Atmospheric condition:** neutral
 - **Air temperature:** 300.15 K
 - **Air density:** 1.19 kg/m³
-- **Latitude:** 44.43°
-- **Meteorological-station wind speed:** 2.06 m/s at 10 m
+- **Latitude:** 44.43° N
+- **Longitude**: 12.25° E
+- **Wind speed:** 4.66 m/s
 
 ### ERA5 wind data
 
