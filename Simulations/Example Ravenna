@@ -1,0 +1,78 @@
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#            SIMULATION STOP            #
+#.......................................#
+time.stop_time               =   250.0     # Max (simulated) time to evolve
+time.max_step                =   5000          # Max number of time steps
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#         TIME STEP COMPUTATION         #
+#.......................................#
+time.fixed_dt         =   0.05        # Use this constant dt if > 0
+time.cfl              =   0.95         # CFL factor
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#            INPUT AND OUTPUT           #
+#.......................................#
+time.plot_interval            =  500       # Steps between plot files
+time.checkpoint_interval      =  1000       # Steps between checkpoint files
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#               PHYSICS                 #
+#.......................................#
+incflo.gravity          =   0.  0. -9.81  # Gravitational force (3D)
+incflo.density             = 1.19          # Reference density 
+
+incflo.use_godunov = 1
+incflo.godunov_type = "bds"
+incflo.diffusion_type = 2
+transport.viscosity = 1.6e-5
+transport.laminar_prandtl = 0.7
+transport.turbulent_prandtl = 0.3333
+transport.reference_temperature = 300.15
+turbulence.model = Smagorinsky
+Smagorinsky_coeffs.Cs = 0.135
+
+
+incflo.physics = ABL
+ICNS.source_terms = BoussinesqBuoyancy CoriolisForcing ABLForcing
+CoriolisForcing.latitude = 44.43
+ABLForcing.abl_forcing_height = 10
+
+incflo.velocity = 2.06 0.0  0.0
+
+ABL.temperature_heights = 0.0 8.43 16.86
+ABL.temperature_values = 300.15 300.15 300.15
+
+ABL.kappa = .41
+ABL.surface_roughness_z0 = 0.0001
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#        ADAPTIVE MESH REFINEMENT       #
+#.......................................#
+amr.n_cell              = 80 40 32    # Grid cells at coarsest AMRlevel
+amr.max_level           = 0           # Max AMR level in hierarchy 
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#              GEOMETRY                 #
+#.......................................#
+geometry.prob_lo        =   0.       0.     0.  # Lo corner coordinates
+geometry.prob_hi        =   101.17 50.59 16.86  # Hi corner coordinates
+geometry.is_periodic    =   1   1   0   # Periodicity x y z (0/1)
+
+# Boundary conditions
+zlo.type =   "wall_model"
+
+zhi.type =   "slip_wall"
+zhi.temperature_type = "fixed_gradient"
+zhi.temperature = 0.0 # tracer is used to specify potential temperature gradient
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#              VERBOSITY                #
+#.......................................#
+incflo.verbose          =   0          # incflo_level
+
+amrex.the_arena_is_managed=1
+amrex.async_out=0
+# needed because a debug build using BDS + amrex.the_arena_is_managed=0 OOMs the GPU (problem is in incflo as well)
+# This is not needed for a non-debug build
+amrex.the_arena_init_size=4500000000
