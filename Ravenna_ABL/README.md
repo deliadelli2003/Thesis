@@ -10,7 +10,7 @@
 - **Air density:** 1.19 kg/m³
 - **Latitude:** 44.43° N
 - **Longitude**: 12.25° E
-- **Wind speed:** 4.66 m/s
+- **Wind speed:** 4.66 m/s at 100m
 
 ### ERA5 wind data
 
