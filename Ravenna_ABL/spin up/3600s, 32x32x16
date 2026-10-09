@@ -1,0 +1,137 @@
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#            SIMULATION STOP            #
+#.......................................#
+time.stop_time               =   3600.0     # Max (simulated) time to evolve
+time.max_step                =   -1          # Max number of time steps
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#         TIME STEP COMPUTATION         #
+#.......................................#
+time.fixed_dt         =   0.5        # Use this constant dt if > 0
+time.cfl              =   0.95         # CFL factor
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#            INPUT AND OUTPUT           #
+#.......................................#
+time.plot_interval            =  600       # Steps between plot files
+time.checkpoint_interval      =  1200       # Steps between checkpoint files
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#               PHYSICS                 #
+#.......................................#
+incflo.gravity          =   0.  0. -9.81  # Gravitational force (3D)
+incflo.density             = 1.19          # Reference density 
+
+incflo.diffusion_type = 1
+transport.viscosity = 1.85e-5
+transport.laminar_prandtl = 0.7
+transport.turbulent_prandtl = 0.3333
+transport.reference_temperature = 300.15
+turbulence.model = Smagorinsky
+Smagorinsky_coeffs.Cs = 0.135
+
+
+incflo.physics = ABL
+ICNS.source_terms = BoussinesqBuoyancy CoriolisForcing ABLForcing
+CoriolisForcing.latitude = 44.43
+CoriolisForcing.north_vector = 0.0 1.0 0.0
+CoriolisForcing.east_vector  = 1.0 0.0 0.0
+ABLForcing.abl_forcing_height = 100
+
+incflo.velocity = -4.081863 -2.242462 0.0
+
+ABL.temperature_heights = 0.0 600.0 700.0 1280.0
+ABL.temperature_values =  300.15 300.15 300.15 300.15
+ABL.perturb_temperature = false
+
+ABL.perturb_velocity   = true
+ABL.perturb_ref_height = 50.0
+
+ABL.Uperiods = 4.0
+ABL.Vperiods = 4.0
+
+ABL.deltaU = 1.0
+ABL.deltaV = 1.0
+
+ABL.kappa = .41
+ABL.surface_roughness_z0 = 0.0002
+ABL.stats_output_frequency = 100
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#        ADAPTIVE MESH REFINEMENT       #
+#.......................................#
+amr.n_cell              = 32 32 16    # Grid cells at coarsest AMRlevel
+amr.max_level           = 0           # Max AMR level in hierarchy 
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#              GEOMETRY                 #
+#.......................................#
+geometry.prob_lo        =   0.       0.     0.  # Lo corner coordinates
+geometry.prob_hi        =   2560.0 2560.0 1280.0  # Hi corner coordinates
+geometry.is_periodic    =   1   1   0   # Periodicity x y z (0/1)
+
+# Boundary conditions
+zlo.type =   "wall_model"
+
+zhi.type =   "slip_wall"
+zhi.temperature_type = "fixed_gradient"
+zhi.temperature = 0.0 # tracer is used to specify potential temperature gradient
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#            POST-PROCESSING            #
+#.......................................#
+
+incflo.post_processing = sampling averaging
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#               SAMPLING                #
+#.......................................#
+sampling.type = Sampling
+sampling.output_interval = 100
+sampling.output_after_final_step = true
+sampling.output_format = native
+
+sampling.fields = velocity temperature
+
+sampling.labels = xy-domain xz-domain
+
+# Horizontal x-y plane at z = 100 m
+sampling.xy-domain.type = PlaneSampler
+sampling.xy-domain.num_points = 32 32
+sampling.xy-domain.origin = 0.0 0.0 100.0
+sampling.xy-domain.axis1 = 2550.0 0.0 0.0
+sampling.xy-domain.axis2 = 0.0 2550.0 0.0
+
+# Vertical x-z plane at the middle of the domain
+sampling.xz-domain.type = PlaneSampler
+sampling.xz-domain.num_points = 32 16
+sampling.xz-domain.origin = 0.0 1280.0 0.0
+sampling.xz-domain.axis1 = 2550.0 0.0 0.0
+sampling.xz-domain.axis2 = 0.0 0.0 1270.0
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#               AVERAGING               #
+#.......................................#
+
+averaging.type = TimeAveraging
+averaging.labels = means stress
+
+averaging.averaging_start_time = 1800.0
+averaging.averaging_window = 600.0
+
+averaging.means.fields = velocity
+averaging.means.averaging_type = ReAveraging
+
+averaging.stress.fields = velocity
+averaging.stress.averaging_type = ReynoldsStress
+
+#¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨#
+#              VERBOSITY                #
+#.......................................#
+incflo.verbose          =   0          # incflo_level
+
+amrex.the_arena_is_managed=1
+amrex.async_out=0
+# needed because a debug build using BDS + amrex.the_arena_is_managed=0 OOMs the GPU (problem is in incflo as well)
+# This is not needed for a non-debug build
+amrex.the_arena_init_size=4500000000
