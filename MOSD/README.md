@@ -1,0 +1,1 @@
+caso ChannelFlow basato sui parametri di Wang viene utilizzato per verificare l’implementazione MOSD in Kynema-SGF attraverso il confronto con i risultati wave-resolved di Wang e con quelli ottenuti mediante LESGO-MOSD da Ayala.
